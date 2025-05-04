@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Kerry Back">
+<meta name="dcterms.date" content="2025-04-19">
 
-<title>Teaching AI-Assisted Financial Analysis</title>
+<title>Mean-Variance Optimization – Teaching AI-Assisted Financial Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,25 +25,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-748b535e376f14d4692bf2b2e5fd6380.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-47a80812b4d39dabdb9c46b669f27bee.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-748b535e376f14d4692bf2b2e5fd6380.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-47a80812b4d39dabdb9c46b669f27bee.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,35 +69,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -138,7 +109,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Teaching AI-Assisted Financial Analysis</span>
     </a>
   </div>
@@ -149,7 +120,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
@@ -165,427 +136,52 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
         
     </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Mean-Variance Optimization</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Kerry Back </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">April 19, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Mean-variance optimization is one of those topics that was always awkward to teach with spreadsheets. It is clunky to define the portfolio variance in a spreadsheet for more than two assets, and we are forced to use Solver to find efficient portfolios or to deal with the further clunkiness of matrix inversion in a spreadsheet. Also, if we create an example for three assets and someone asks about four, then we have to almost entirely reengineer the spreadsheet. Luckily, the leading models have been trained on enough mean-variance material to know the formula <span class="math inline">\(\Sigma^{-1}\mu\)</span> and to correctly implement it each time. For these reasons, mean-variance optimization provides a very nice example to demonstrate the power of AI + python.</p>
+<p>If we want to implement constraints or to find the efficient frontier without a risk-free asset, then there are alternate routes the models may take, so it pays to be familiar with those before launching into live demos in class.</p>
 
 
 
-
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="" data-listing-date-sort="1712966400000" data-listing-file-modified-sort="1746393845212" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-<div class="thumbnail"><a href="./posts/05-capm/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/05-capm/thumbnail.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/05-capm/index.html" class="no-external">CAPM and Cost of Equity</a>
-</h3>
-<div class="delink listing-description"><a href="./posts/05-capm/index.html" class="no-external">
-
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/05-capm/index.html" class="no-external">
-<div class="listing-date">
-Apr 13, 2024
-</div>
-<div class="listing-author">
-Kerry Back
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="" data-listing-date-sort="1713744000000" data-listing-file-modified-sort="1746393845213" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-<div class="thumbnail"><a href="./posts/08-fama-french/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/08-fama-french/thumbnail.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/08-fama-french/index.html" class="no-external">Fama-French Model</a>
-</h3>
-<div class="delink listing-description"><a href="./posts/08-fama-french/index.html" class="no-external">
-
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/08-fama-french/index.html" class="no-external">
-<div class="listing-date">
-Apr 22, 2024
-</div>
-<div class="listing-author">
-Kerry Back
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-listing-date-sort="1743465600000" data-listing-file-modified-sort="1746393845212" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-<div class="thumbnail"><a href="./posts/01-prompts/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/01-prompts/thumbnail.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/01-prompts/index.html" class="no-external">Prompt Engineering (or Not)</a>
-</h3>
-<div class="delink listing-description"><a href="./posts/01-prompts/index.html" class="no-external">
-
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/01-prompts/index.html" class="no-external">
-<div class="listing-date">
-Apr 1, 2025
-</div>
-<div class="listing-author">
-Kerry Back
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-listing-date-sort="1743724800000" data-listing-file-modified-sort="1746393845212" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="78">
-<div class="thumbnail"><a href="./posts/02-julius/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/02-julius/julius.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/02-julius/index.html" class="no-external">Julius and the Democratization of Coding</a>
-</h3>
-<div class="delink listing-description"><a href="./posts/02-julius/index.html" class="no-external">
-The world is aware that generative AI has made coders more efficient, but I’m not sure there is as much recognition of the arguably more important fact that gen AI has made…
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/02-julius/index.html" class="no-external">
-<div class="listing-date">
-Apr 4, 2025
-</div>
-<div class="listing-author">
-Kerry Back
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-listing-date-sort="1743984000000" data-listing-file-modified-sort="1746393845212" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-<div class="thumbnail"><a href="./posts/03-online-data/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/03-online-data/thumbnail.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/03-online-data/index.html" class="no-external">Online Data and Data Readers</a>
-</h3>
-<div class="delink listing-description"><a href="./posts/03-online-data/index.html" class="no-external">
-
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/03-online-data/index.html" class="no-external">
-<div class="listing-date">
-Apr 7, 2025
-</div>
-<div class="listing-author">
-Kerry Back
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="" data-listing-date-sort="1744243200000" data-listing-file-modified-sort="1746393845212" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-<div class="thumbnail"><a href="./posts/04-apps/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/04-apps/thumbnail.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/04-apps/index.html" class="no-external">Building Apps</a>
-</h3>
-<div class="delink listing-description"><a href="./posts/04-apps/index.html" class="no-external">
-
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/04-apps/index.html" class="no-external">
-<div class="listing-date">
-Apr 10, 2025
-</div>
-<div class="listing-author">
-Kerry Back
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="6" data-categories="" data-listing-date-sort="1744761600000" data-listing-file-modified-sort="1746393845213" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-<div class="thumbnail"><a href="./posts/06-retirement/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/06-retirement/thumbnail.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/06-retirement/index.html" class="no-external">Simulating Retirement Plans</a>
-</h3>
-<div class="delink listing-description"><a href="./posts/06-retirement/index.html" class="no-external">
-
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/06-retirement/index.html" class="no-external">
-<div class="listing-date">
-Apr 16, 2025
-</div>
-<div class="listing-author">
-Kerry Back
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="7" data-categories="" data-listing-date-sort="1745020800000" data-listing-file-modified-sort="1746393845213" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="165">
-<div class="thumbnail"><a href="./posts/07-mean-variance/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/07-mean-variance/thumbnail.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/07-mean-variance/index.html" class="no-external">Mean-Variance Optimization</a>
-</h3>
-<div class="delink listing-description"><a href="./posts/07-mean-variance/index.html" class="no-external">
-Mean-variance optimization is one of those topics that was always awkward to teach with spreadsheets. It is clunky to define the portfolio variance in a spreadsheet for more…<span class="math inline"></span>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/07-mean-variance/index.html" class="no-external">
-<div class="listing-date">
-Apr 19, 2025
-</div>
-<div class="listing-author">
-Kerry Back
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="8" data-categories="SnVsaXVzJTJDQ29kaW5n" data-listing-date-sort="1745539200000" data-listing-file-modified-sort="1746393845213" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-<div class="thumbnail"><a href="./posts/09-performance-evaluation/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/09-performance-evaluation/thumbnail.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/09-performance-evaluation/index.html" class="no-external">Mutual Fund Performance Evaluation</a>
-</h3>
-<div class="delink listing-description"><a href="./posts/09-performance-evaluation/index.html" class="no-external">
-
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/09-performance-evaluation/index.html" class="no-external">
-<div class="listing-date">
-Apr 25, 2025
-</div>
-<div class="listing-author">
-Kerry Back
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="9" data-categories="" data-listing-date-sort="1745798400000" data-listing-file-modified-sort="1746393845213" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-<div class="thumbnail"><a href="./posts/10-capital-budgeting/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/10-capital-budgeting/thumbnail.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/10-capital-budgeting/index.html" class="no-external">Julius and the Democratization of Coding</a>
-</h3>
-<div class="delink listing-description"><a href="./posts/10-capital-budgeting/index.html" class="no-external">
-
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/10-capital-budgeting/index.html" class="no-external">
-<div class="listing-date">
-Apr 28, 2025
-</div>
-<div class="listing-author">
-Kerry Back
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="10" data-categories="" data-listing-date-sort="1746057600000" data-listing-file-modified-sort="1746393845213" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-<div class="thumbnail"><a href="./posts/11-pro-formas/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/11-pro-formas/thumbnail.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/11-pro-formas/index.html" class="no-external">Pro Formas and Valuation</a>
-</h3>
-<div class="delink listing-description"><a href="./posts/11-pro-formas/index.html" class="no-external">
-
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/11-pro-formas/index.html" class="no-external">
-<div class="listing-date">
-May 1, 2025
-</div>
-<div class="listing-author">
-Kerry Back
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="11" data-categories="" data-listing-date-sort="1746316800000" data-listing-file-modified-sort="1746393845213" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-<div class="thumbnail"><a href="./posts/12-web-scraping/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/12-web-scraping/thumbnail.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/12-web-scraping/index.html" class="no-external">Web Scraping</a>
-</h3>
-<div class="delink listing-description"><a href="./posts/12-web-scraping/index.html" class="no-external">
-
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/12-web-scraping/index.html" class="no-external">
-<div class="listing-date">
-May 4, 2025
-</div>
-<div class="listing-author">
-Kerry Back
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="12" data-categories="SnVsaXVzJTJDQ29kaW5n" data-listing-date-sort="1746576000000" data-listing-file-modified-sort="1746393845213" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-<div class="thumbnail"><a href="./posts/13-scraping-edgar/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/13-scraping-edgar/thumbnail.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/13-scraping-edgar/index.html" class="no-external">Scraping EDGAR</a>
-</h3>
-<div class="delink listing-description"><a href="./posts/13-scraping-edgar/index.html" class="no-external">
-
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/13-scraping-edgar/index.html" class="no-external">
-<div class="listing-date">
-May 7, 2025
-</div>
-<div class="listing-author">
-Kerry Back
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="13" data-categories="SnVsaXVzJTJDQ29kaW5n" data-listing-date-sort="1746835200000" data-listing-file-modified-sort="1746393845213" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-<div class="thumbnail"><a href="./posts/14-apis/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/14-apis/thumbnail.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/14-apis/index.html" class="no-external">Apps with API Calls</a>
-</h3>
-<div class="delink listing-description"><a href="./posts/14-apis/index.html" class="no-external">
-
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/14-apis/index.html" class="no-external">
-<div class="listing-date">
-May 10, 2025
-</div>
-<div class="listing-author">
-Kerry Back
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="14" data-categories="SnVsaXVzJTJDQ29kaW5n" data-listing-date-sort="1747094400000" data-listing-file-modified-sort="1746393845213" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-<div class="thumbnail"><a href="./posts/15-vectors/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/15-vectors/thumbnail.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/15-vectors/index.html" class="no-external">Vector Embeddings</a>
-</h3>
-<div class="delink listing-description"><a href="./posts/15-vectors/index.html" class="no-external">
-
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/15-vectors/index.html" class="no-external">
-<div class="listing-date">
-May 13, 2025
-</div>
-<div class="listing-author">
-Kerry Back
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="15" data-categories="" data-listing-date-sort="1747353600000" data-listing-file-modified-sort="1746393845214" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-<div class="thumbnail"><a href="./posts/16-rag/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/16-rag/thumbnail.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/16-rag/index.html" class="no-external">Retrieval Augmented Generation</a>
-</h3>
-<div class="delink listing-description"><a href="./posts/16-rag/index.html" class="no-external">
-
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/16-rag/index.html" class="no-external">
-<div class="listing-date">
-May 16, 2025
-</div>
-<div class="listing-author">
-Kerry Back
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

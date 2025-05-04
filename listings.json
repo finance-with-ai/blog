@@ -2,12 +2,22 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/welcome/index.html",
-      "/posts/mv-opt/index.html"
+      "/posts/05-capm/index.html",
+      "/posts/08-fama-french/index.html",
+      "/posts/01-prompts/index.html",
+      "/posts/02-julius/index.html",
+      "/posts/03-online-data/index.html",
+      "/posts/04-apps/index.html",
+      "/posts/06-retirement/index.html",
+      "/posts/07-mean-variance/index.html",
+      "/posts/09-performance-evaluation/index.html",
+      "/posts/10-capital-budgeting/index.html",
+      "/posts/11-pro-formas/index.html",
+      "/posts/12-web-scraping/index.html",
+      "/posts/13-scraping-edgar/index.html",
+      "/posts/14-apis/index.html",
+      "/posts/15-vectors/index.html",
+      "/posts/16-rag/index.html"
     ]
-  },
-  {
-    "listing": "/posts/welcome/index.html",
-    "items": []
   }
 ]
