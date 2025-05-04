@@ -1,0 +1,30 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Finance Education Technology",
+    "section": "",
+    "text": "Welcome to my Finance Education Technology blog! Here you’ll find tutorials and resources for incorporating modern technology tools into finance education.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome to My Blog\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCreating a Mean-Variance Optimization App with Streamlit and Julia\n\n\n\nJulia\n\nPortfolio Optimization\n\nStreamlit\n\n\n\n\n\n\n\n\n\nMar 14, 2024\n\n\nYour Name\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome to My Blog",
+    "section": "",
+    "text": "Welcome to my blog! Here you’ll find…\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/mv-opt/index.html",
+    "href": "posts/mv-opt/index.html",
+    "title": "Creating a Mean-Variance Optimization App with Streamlit and Julia",
+    "section": "",
+    "text": "In this post, I’ll demonstrate how to create an interactive Streamlit application that performs mean-variance portfolio optimization using Julia. This tool is perfect for teaching modern portfolio theory in investment courses, allowing students to visualize the efficient frontier and experiment with different portfolio constraints.\nWe’ll cover: - Setting up Julia and Streamlit - Implementing the mean-variance optimization algorithm - Creating an interactive user interface - Visualizing the efficient frontier - Adding constraints and risk-free assets\nThis application will help students: - Understand the relationship between risk and return - Visualize portfolio diversification benefits - Experiment with different asset combinations - See how constraints affect optimal portfolios\nStay tuned for the complete tutorial where we’ll build this educational tool step by step!"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Welcome to my Finance Education Technology blog! This site is dedicated to helping finance instructors at undergraduate, masters, and MBA levels incorporate modern technology tools into their teaching.\nHere, you’ll find practical tutorials, teaching resources, and code examples that bridge the gap between finance theory and practical implementation. I focus on creating interactive applications, using modern tools like Python, R, and Streamlit to help students better understand complex financial concepts.\nWhether you’re looking to modernize your portfolio management class, create interactive demonstrations of financial theories, or find new ways to engage students with quantitative finance, you’ll find resources here to support your teaching journey."
+  }
+]
