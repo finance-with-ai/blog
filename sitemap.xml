@@ -2,18 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://finance-with-ai.org/welcome.html</loc>
-    <lastmod>2025-05-06T14:19:00.839Z</lastmod>
-  </url>
-  <url>
-    <loc>https://finance-with-ai.org/posts/02-online-data/index.html</loc>
-    <lastmod>2025-05-06T14:19:00.835Z</lastmod>
-  </url>
-  <url>
-    <loc>https://finance-with-ai.org/index.html</loc>
-    <lastmod>2025-05-06T14:19:00.816Z</lastmod>
+    <lastmod>2025-05-06T20:40:30.307Z</lastmod>
   </url>
   <url>
     <loc>https://finance-with-ai.org/posts/01-julius/index.html</loc>
-    <lastmod>2025-05-06T14:19:00.834Z</lastmod>
+    <lastmod>2025-05-06T20:40:30.302Z</lastmod>
+  </url>
+  <url>
+    <loc>https://finance-with-ai.org/index.html</loc>
+    <lastmod>2025-05-06T20:40:30.284Z</lastmod>
+  </url>
+  <url>
+    <loc>https://finance-with-ai.org/posts/02-online-data/index.html</loc>
+    <lastmod>2025-05-06T20:40:30.303Z</lastmod>
+  </url>
+  <url>
+    <loc>https://finance-with-ai.org/subscribe.html</loc>
+    <lastmod>2025-05-06T20:40:30.307Z</lastmod>
   </url>
 </urlset>
