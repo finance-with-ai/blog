@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Kerry Back">
-<meta name="dcterms.date" content="2025-05-01">
+<meta name="dcterms.date" content="2025-05-10">
 
-<title>Pro Formas and Valuation – Teaching AI-Assisted Financial Analysis</title>
+<title>Mean-Variance Optimization – Teaching AI-Assisted Financial Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -43,9 +43,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-de070a7b0ab54f8780927367ac907214.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-05dd843c4cff6becf928c21c0da671f2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-d1233a30ebe2bd162acb5626d28bbed4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-05dd843c4cff6becf928c21c0da671f2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-3d0356d6ec5cbd505b85ae8e31ad8e7e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-a73a3d81b9266ad1eef8b238cdedaa3f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-3d0356d6ec5cbd505b85ae8e31ad8e7e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -74,6 +74,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -290,8 +319,11 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Pro Formas and Valuation</h1>
-</div>
+<h1 class="title">Mean-Variance Optimization</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Finance</div>
+  </div>
+  </div>
 
 
 
@@ -307,7 +339,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 1, 2025</p>
+      <p class="date">May 10, 2025</p>
     </div>
   </div>
   
@@ -319,6 +351,8 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>Mean-variance optimization is one of those topics that was always awkward to teach with spreadsheets. It is clunky to define the portfolio variance in a spreadsheet for more than two assets, and we are forced to use Solver to find efficient portfolios or to deal with the further clunkiness of matrix inversion in a spreadsheet. Also, if we create an example for three assets and someone asks about four, then we have to almost entirely reengineer the spreadsheet. Luckily, the leading models have been trained on enough mean-variance material to know the formula <span class="math inline">\(\Sigma^{-1}\mu\)</span> and to correctly implement it each time. For these reasons, mean-variance optimization provides a very nice example to demonstrate the power of AI + python.</p>
+<p>If we want to implement constraints or to find the efficient frontier without a risk-free asset, then there are alternate routes the models may take, so it pays to be familiar with those before launching into live demos in class.</p>
 
 
 
