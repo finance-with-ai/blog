@@ -9,7 +9,7 @@
 <meta name="author" content="Kerry Back">
 <meta name="dcterms.date" content="2025-05-05">
 
-<title>Online Data and Visualization – Teaching AI-Assisted Financial Analysis</title>
+<title>Online Data and Visualization</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -43,9 +43,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-de070a7b0ab54f8780927367ac907214.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-05dd843c4cff6becf928c21c0da671f2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-d1233a30ebe2bd162acb5626d28bbed4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-05dd843c4cff6becf928c21c0da671f2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-ebee27e34c307dd2a7394e9a447237ea.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-cfddaf572347003afff977867de4b8f9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-ebee27e34c307dd2a7394e9a447237ea.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -104,6 +104,7 @@ window.Quarto = {
 };
 </script>
 
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -275,8 +276,8 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">Teaching AI-Assisted Financial Analysis</span>
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../teaching_finance_with_ai_logo.png" alt="" class="navbar-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -290,11 +291,11 @@ window.Quarto = {
 <span class="menu-text">Welcome</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://mgmt675-2025.kerryback.com"> 
-<span class="menu-text">Course Materials</span></a>
+    <a class="nav-link" href="../../subscribe.html"> 
+<span class="menu-text">Subscribe</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/finance-with-ai"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="../../index.xml"> <i class="bi bi-rss" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -353,12 +354,12 @@ window.Quarto = {
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="spy-returns.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:30.0%"></p>
+<p><img src="spy-returns.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
 </figure>
 </div>
 <p>Grabbing and visualizing online data is a good place to start to demonstrate to students the power and simplicity of AI + python. Yahoo Finance is a good source of free online data about stock and option prices and corporate financial statements. The yfinance library is the best python library for retrieving it. FRED (Federal Reserve Economic Data) is a great source for macroeconomic data, including Treasury and corporate bond yields, crude oil prices, etc. The pandas-datareader library is the best python library for accessing FRED. Neither yfinance nor pandas-datareader requires you to obtain an API key.</p>
 <p>Computing stock returns with yfinance is a good starting point. Yahoo Finance computes dividend and split adjusted closing prices. We can compute total close-to-close returns, including dividend returns, as percent changes of the adjusted closing prices.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> The yfinance library recently changed to returning the adjusted prices by default rather than returning standard (split-adjusted) prices. The confusing part is that it now calls the adjusted prices returned by default “Close” rather than the former “Adj Close.” I recommend prompting the LLM to use the latest version of yfinance and explicitly prompting the LLM to get the “Close” instead of “Adj Close.”</p>
-<p>A more complex but also more transparent solution to the Close/Adj Close confusion is to prompt the LLM to use the yfinance download function with auto_adjust set to False (this was the old behavior) and to get both the “Close” and “Adj Close.” Percent changes in “Adj Close” are what you want for returns. To show students the difference between the two, you could ask for percent changes in both and then filter to dates where the percent changes differ by <span class="math inline">\(10^{-5}\)</span> or so. Those dates will be the ex-dividend days. The difference between the two percent changes on those days is the quarterly dividend yield.</p>
+<p>A more complex but also more transparent solution to the Close/Adj Close confusion is to prompt the LLM to use the yfinance download function with auto_adjust set to False (this was the old behavior) and to get both the “Close” and “Adj Close.” Percent changes in “Adj Close” are what you want for returns. To show students the difference between the two, you could ask for percent changes in both and then filter to dates where the percent changes differ by more than <span class="math inline">\(10^{-5}\)</span> or so. Those dates will be the ex-dividend days. The difference between the two percent changes on those days is the quarterly dividend yield.</p>
 <p>The Yahoo Finance data starts in 1970. To get the longest possible history for a ticker, you can ask it to start in 1970. You can specify other dates and you can specify the frequency of the data - daily, weekly, monthly, quarterly, annual. After computing returns, students can go immediately to creating charts. Python has very versatile plotting libraries. The LLM will default to matplotlib or seaborn, depending on what type of chart you ask for. You can ask Julius to adjust the figure size, font sizes, tick locations, tick labels, axis labels, title, legend positioning, and more. Figures can be saved and downloaded as jpegs, pngs, pdfs, or other types. Different themes can also be applied – gridded or not gridded, light or dark background, etc. Rather than attempting to teach all of these possibilities, I recommend encouraging students to ask Julius what is possible. They should get in the habit of turning to AI for advice, collaboration, and assistance in whatever task they are doing.</p>
 <p>After exploring stock returns with yfinance, I turn to exploring FRED data using pandas-datareader. Students can start by going to the FRED website and using point-and-click to find data and download it as csv files. Then, they can turn to Julius to do the same thing more quickly. For example, “get me the history of 10-year Treasury yields from FRED using pandas-datareader at a daily frequency and plot them.” There are alternate ways of getting the FRED data: there are other FRED-specific python libraries and there is the generic requests library. But pandas-datareader provides the easiest access. In subsequent posts, we’ll explore Ken French’s data library, the SEC EDGAR site, and scraping data from websites using the requests and beautiful soup libraries.</p>
 
