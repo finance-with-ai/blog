@@ -24,6 +24,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
@@ -41,14 +42,14 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-2b3e328b71be8d25427581baeb23079b.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-82eaea5a6515d4e8388f3e5e40526c0c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-bee60b94637065dbe69b7119883910b1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-ebee27e34c307dd2a7394e9a447237ea.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-cfddaf572347003afff977867de4b8f9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
+  "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
+  "panel-placement": "end",
+  "type": "overlay",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -133,7 +134,7 @@ window.Quarto = {
 <link rel="stylesheet" href="styles.css">
 <link rel="alternate" type="application/rss+xml" title="Teaching Finance with AI" href="index.xml" data-external="1"></head>
 
-<body class="quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-fixed quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -296,13 +297,46 @@ window.Quarto = {
   </script>
 
 <div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./teaching_finance_with_ai_logo.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Teaching Finance with AI</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://mgmt675-2025.kerryback.com"> 
+<span class="menu-text">Course Materials</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(3)</span></div><div class="category" data-category="QUklMjB0b29scw==">AI tools <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RmluYW5jZQ==">Finance <span class="quarto-category-count">(2)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(4)</span></div><div class="category" data-category="QUklMjB0b29scw==">AI tools <span class="quarto-category-count">(2)</span></div><div class="category" data-category="RmluYW5jZQ==">Finance <span class="quarto-category-count">(2)</span></div><div class="category" data-category="UHl0aG9uJTIwVG9vbHM=">Python Tools <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content column-page-left" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
@@ -337,7 +371,37 @@ window.Quarto = {
   </div>
 </div>
 <div class="list quarto-listing-default">
-<div class="quarto-post image-left" data-index="0" data-categories="QUklMjB0b29scw==" data-listing-date-sort="1746316800000" data-listing-file-modified-sort="1746592213492" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="962">
+<div class="quarto-post image-left" data-index="0" data-categories="QUklMjB0b29scw==" data-listing-date-sort="1746230400000" data-listing-file-modified-sort="1746594147729" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="317">
+<div class="thumbnail"><a href="./posts/0-welcome/index.html" class="no-external">
+
+<img loading="lazy" src="./posts/0-welcome/teaching_finance_with_ai_logo.png" class="thumbnail-image" style="height: 10em;">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/0-welcome/index.html" class="no-external">Teaching Finance with AI</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('QUklMjB0b29scw=='); return false;">AI tools</div>
+
+</div>
+<div class="delink listing-description"><a href="./posts/0-welcome/index.html" class="no-external">
+The purpose of this blog and the site finance-with-ai.org is to communicate things I’ve learned about teaching MBA students at Rice University how to do financial analyses…
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/0-welcome/index.html" class="no-external">
+<div class="listing-date">
+May 3, 2025
+</div>
+<div class="listing-author">
+Kerry Back
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-left" data-index="1" data-categories="QUklMjB0b29scw==" data-listing-date-sort="1746316800000" data-listing-file-modified-sort="1746594147729" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="962">
 <div class="thumbnail"><a href="./posts/01-julius/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/01-julius/julius.jpg" class="thumbnail-image" style="height: 10em;">
@@ -367,7 +431,7 @@ Kerry Back
 </a>
 </div>
 </div>
-<div class="quarto-post image-left" data-index="1" data-categories="RmluYW5jZQ==" data-listing-date-sort="1746403200000" data-listing-file-modified-sort="1746592213492" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="696">
+<div class="quarto-post image-left" data-index="2" data-categories="RmluYW5jZQ==" data-listing-date-sort="1746403200000" data-listing-file-modified-sort="1746594147730" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="696">
 <div class="thumbnail"><a href="./posts/02-online-data/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/02-online-data/spy-returns.jpg" class="thumbnail-image" style="height: 10em;">
@@ -397,7 +461,7 @@ Kerry Back
 </a>
 </div>
 </div>
-<div class="quarto-post image-left" data-index="2" data-categories="RmluYW5jZQ==" data-listing-date-sort="1746489600000" data-listing-file-modified-sort="1746592213493" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="314">
+<div class="quarto-post image-left" data-index="3" data-categories="RmluYW5jZSUyQ1B5dGhvbiUyMFRvb2xz" data-listing-date-sort="1746489600000" data-listing-file-modified-sort="1746594147730" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="314">
 <div class="thumbnail"><a href="./posts/03-capm/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/03-capm/capm.jpg" class="thumbnail-image" style="height: 10em;">
@@ -410,6 +474,8 @@ Kerry Back
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('RmluYW5jZQ=='); return false;">Finance</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9uJTIwVG9vbHM='); return false;">Python Tools</div>
 
 </div>
 <div class="delink listing-description"><a href="./posts/03-capm/index.html" class="no-external">
@@ -875,6 +941,19 @@ Kerry Back
   loadGiscus();
 </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Copyright 2025, Kerry Back</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
 
 
 
