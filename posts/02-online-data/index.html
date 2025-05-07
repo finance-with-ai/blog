@@ -42,8 +42,8 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-2b3e328b71be8d25427581baeb23079b.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-ebee27e34c307dd2a7394e9a447237ea.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-cfddaf572347003afff977867de4b8f9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-68973f87371bbb9c5c0812d3c7110dbb.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-669ea1b3537da02b6ad0561353f3f16f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -72,35 +72,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -357,9 +328,11 @@ window.Quarto = {
 </div>
 <p>Grabbing and visualizing online data is a good place to start to demonstrate to students the power and simplicity of AI + python. Yahoo Finance is a good source of free online data about stock and option prices and corporate financial statements. The yfinance library is the best python library for retrieving it. FRED (Federal Reserve Economic Data) is a great source for macroeconomic data, including Treasury and corporate bond yields, crude oil prices, etc. The pandas-datareader library is the best python library for accessing FRED. Neither yfinance nor pandas-datareader requires you to obtain an API key.</p>
 <p>Computing stock returns with yfinance is a good starting point. Yahoo Finance computes dividend and split adjusted closing prices. We can compute total close-to-close returns, including dividend returns, as percent changes of the adjusted closing prices.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> The yfinance library recently changed to returning the adjusted prices by default rather than returning standard (split-adjusted) prices. The confusing part is that it now calls the adjusted prices returned by default “Close” rather than the former “Adj Close.” I recommend prompting the LLM to use the latest version of yfinance and explicitly prompting the LLM to get the “Close” instead of “Adj Close.”</p>
-<p>A more complex but also more transparent solution to the Close/Adj Close confusion is to prompt the LLM to use the yfinance download function with auto_adjust set to False (this was the old behavior) and to get both the “Close” and “Adj Close.” Percent changes in “Adj Close” are what you want for returns. To show students the difference between the two, you could ask for percent changes in both and then filter to dates where the percent changes differ by more than <span class="math inline">\(10^{-5}\)</span> or so. Those dates will be the ex-dividend days. The difference between the two percent changes on those days is the quarterly dividend yield.</p>
+<p>A more complex but also more transparent solution to the Close/Adj Close confusion is to prompt the LLM to use the yfinance download function with auto_adjust set to False (this was the old behavior) and to get both the “Close” and “Adj Close.” Percent changes in “Adj Close” are what you want for returns. To show students the difference between the two, you could ask for percent changes in both and then filter to dates where the percent changes differ by more than 0.00001 or so. Those dates will be the ex-dividend days. The difference between the two percent changes on those days is the quarterly dividend yield.</p>
 <p>The Yahoo Finance data starts in 1970. To get the longest possible history for a ticker, you can ask it to start in 1970. You can specify other dates and you can specify the frequency of the data - daily, weekly, monthly, quarterly, annual. After computing returns, students can go immediately to creating charts. Python has very versatile plotting libraries. The LLM will default to matplotlib or seaborn, depending on what type of chart you ask for. You can ask Julius to adjust the figure size, font sizes, tick locations, tick labels, axis labels, title, legend positioning, and more. Figures can be saved and downloaded as jpegs, pngs, pdfs, or other types. Different themes can also be applied – gridded or not gridded, light or dark background, etc. Rather than attempting to teach all of these possibilities, I recommend encouraging students to ask Julius what is possible. They should get in the habit of turning to AI for advice, collaboration, and assistance in whatever task they are doing.</p>
 <p>After exploring stock returns with yfinance, I turn to exploring FRED data using pandas-datareader. Students can start by going to the FRED website and using point-and-click to find data and download it as csv files. Then, they can turn to Julius to do the same thing more quickly. For example, “get me the history of 10-year Treasury yields from FRED using pandas-datareader at a daily frequency and plot them.” There are alternate ways of getting the FRED data: there are other FRED-specific python libraries and there is the generic requests library. But pandas-datareader provides the easiest access. In subsequent posts, we’ll explore Ken French’s data library, the SEC EDGAR site, and scraping data from websites using the requests and beautiful soup libraries.</p>
+<hr>
+<p><em>First published on <a href="https://finance-with-ai.org">finance-with-ai.org</a></em></p>
 
 
 
@@ -367,7 +340,7 @@ window.Quarto = {
 <div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1"><p>There is a slight caveat that the percent change of the adjusted closing price on an ex-dividend day <span class="math inline">\(t\)</span> is <span class="math inline">\(P_t/(P_{t-1} - D_t) - 1\)</span> rather than the return <span class="math inline">\((P_t+D_t)/P_{t-1} - 1\)</span> that we would normally compute, but, given typical quarterly dividend yields, the difference between these numbers is slight. Percent changes of adjusted closing prices on all days other than ex-dividend days equal percent changes in split-adjusted closing prices.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>There is a slight caveat that the percent change of the adjusted closing price on an ex-dividend day takes the dividend out of the denominator of the price ratio rather than adding it to the numerator, but, given typical quarterly dividend yields, the difference between these numbers is slight. Percent changes of adjusted closing prices on all days other than ex-dividend days equal percent changes in split-adjusted closing prices.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
