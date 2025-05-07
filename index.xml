@@ -10,7 +10,39 @@
 <atom:link href="https://finance-with-ai.org/index.xml" rel="self" type="application/rss+xml"/>
 <description>Teaching the use of generative AI in finance</description>
 <generator>quarto-1.7.30</generator>
-<lastBuildDate>Tue, 06 May 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Wed, 07 May 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Prompt Engineering (or Not)</title>
+  <dc:creator>Kerry Back</dc:creator>
+  <link>https://finance-with-ai.org/posts/04-prompts/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://finance-with-ai.org/posts/04-prompts/engineering.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+</figure>
+</div>
+<p>I use <a href="https://mentimeter.com/">Menti</a> surveys periodically to ask students what they would like to learn more about, and how to write effective prompts frequently shows up. In the first bit of time after ChatGPT 3.5 was introduced, there was a lot of chatter online about prompt engineering. This seems to have died down, and for good reason. The models are so good now that they don’t seem to require any special prompting. Just chat with them.</p>
+<p>I take advice on this topic from <a href="https://mgmt.wharton.upenn.edu/profile/emollick/">Ethan Mollick</a>, a Wharton management professor who studies these things and whose blog, <a href="https://www.oneusefulthing.org/">One Useful Thing</a>, you should certainly follow, if you do not already. I direct students to one of Mollick’s posts in particular, which discusses <a href="https://www.oneusefulthing.org/p/getting-started-with-ai-good-enough">good enough prompting</a>. Mollick suggests that instead of worrying about how to write prompts, people should treat an LLM as an “infinitely patient coworker.” I find that I naturally come back to this several times in my course, reminding students “Remember what Ethan Mollick said: treat AI as an infinitely patient coworker.” Actually, I modify the quote from “coworker” to “colleague.” The term “coworker” suggests a peer to me, but AI can serve equally well as a senior colleague who mentors, or a junior colleague who assists, or a peer who collaborates. And, it can move seamlessly from one to the other.</p>
+<p>A question students ask is whether they should give specific instructions in a chat, or just a brief statement of what they want and then see what they get. Here, I say “think of AI as an ininitely patient assistant.” How detailed should the instructions that you give an assistant be? You can be very detailed, but that is a waste of time if the assistant is competent to do the task alone. On the other hand, if you are not detailed, you may find the assistant does something different from what you want, and you have to send him/her/it back to do it again. This process could go on for quite awhile and end up being a waste of time. How to know which path to follow? You need to know your assistant. So, I encourage students to experiment to learn the AI’s capabilities. Some tasks will have appeared frequently in its training data, and it will need very little instruction. It may be less familiar with others and need more. Here, I stress the “infinitely patient” part. You can experiment all you want.</p>
+<p>If you find yourself on an iterative path of correcting errors, it can often be useful to just start a new chat and this time give detailed instructions. The frustrating part about correcting errors is that the LLM will regenerate code each time and sometimes, when it tries to fix one error, it introduces new errors (I mean logical errors, not syntax errors that it will fix on its own) in code that worked fine before. If this begins to happen, it is probably time for a fresh start.</p>
+<p>What about tasks that involve multiple steps? Should you ask for everything you want in a single prompt or just ask for one step at a time? Again, I ask students to experiment. What they consistently report back to me is that it is better to just ask for one step at a time. However, one thing to keep in mind is that an LLM can be somewhat forgetful. Even though the context windows are large enough today that an LLM will be able to re-read your entire chat each time you prompt it, it cannot be equally attentive to everything in the chat. So, it can be helpful to prompt it in later steps to “use this that you got before and that that you got before and …” instead of relying on it knowing that it should use what it obtained in previous steps.</p>
+<p>What do you think? What works for you? Let us know in the comments below.</p>
+<hr>
+<p><em>First published on <a href="https://finance-with-ai.org">finance-with-ai.org</a></em></p>
+
+
+
+ ]]></description>
+  <category>AI Overview</category>
+  <guid>https://finance-with-ai.org/posts/04-prompts/</guid>
+  <pubDate>Wed, 07 May 2025 00:00:00 GMT</pubDate>
+  <media:content url="https://finance-with-ai.org/posts/04-prompts/engineering.png" medium="image" type="image/png" height="96" width="144"/>
+</item>
 <item>
   <title>CAPM and PowerPoint</title>
   <dc:creator>Kerry Back</dc:creator>
@@ -119,7 +151,7 @@
 <item>
   <title>Teaching Finance with AI</title>
   <dc:creator>Kerry Back</dc:creator>
-  <link>https://finance-with-ai.org/posts/0-welcome/</link>
+  <link>https://finance-with-ai.org/posts/00-welcome/</link>
   <description><![CDATA[ 
 
 
@@ -128,21 +160,22 @@
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://finance-with-ai.org/posts/0-welcome/teaching_finance_with_ai_logo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+<p><img src="https://finance-with-ai.org/posts/00-welcome/teaching_finance_with_ai_logo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
 </figure>
 </div>
 <p>The purpose of this blog and the site <a href="https://finance-with-ai.org">finance-with-ai.org</a> is to communicate things I’ve learned about teaching MBA students at Rice University how to do financial analyses using “AI + coding” and more broadly how generative AI can and is being used in the finance industry. I will post short notes on what I’ve learned about teaching this topic and on related things I find interesting. The blog is intended to be a resource for finance instructors at the undergraduate, MBA, and MSF levels.</p>
 <p>The current effectiveness of AI + coding varies somewhat between corporate finance and investments applications. Here, I lump fundamental security analysis with corporate finance. There are many topics in the investments area for which spreadsheets were never well equipped and for which spreadsheets are seldom used in practice. Previously, it was difficult to teach those topics by example, but now students can prompt an LLM to generate code for them.</p>
 <p>Even in capital budgeting, financial statement analysis, and pro forma financial valuation, AI is already very valuable. It is not yet ready to replace spreadsheets, but it can be a useful complement to spreadsheets. AI can be used as a collaborator – “tell me how you would do this” or “you do it your way, and I’ll do it my way, and then we can compare answers.” As the models improve, I expect the world to shift more and more to AI in lieu of spreadsheets even for corporate finance applications. Of course, Hewlett-Packard is still making the 12C financial calculator, and Microsoft will undoubtedly sell Excel for many years to come, but I think AI + coding will eventually dominate. To prepare our students for that world, we should start teaching them now about what is likely to lie ahead.</p>
+<p>What do you think? Let us know in the comments below.</p>
 <hr>
 <p><em>First published on <a href="https://finance-with-ai.org">finance-with-ai.org</a></em></p>
 
 
 
  ]]></description>
-  <guid>https://finance-with-ai.org/posts/0-welcome/</guid>
+  <guid>https://finance-with-ai.org/posts/00-welcome/</guid>
   <pubDate>Sat, 03 May 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://finance-with-ai.org/posts/0-welcome/teaching_finance_with_ai_logo.png" medium="image" type="image/png" height="144" width="144"/>
+  <media:content url="https://finance-with-ai.org/posts/00-welcome/teaching_finance_with_ai_logo.png" medium="image" type="image/png" height="144" width="144"/>
 </item>
 </channel>
 </rss>
