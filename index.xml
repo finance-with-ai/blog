@@ -10,7 +10,41 @@
 <atom:link href="https://finance-with-ai.org/index.xml" rel="self" type="application/rss+xml"/>
 <description>Teaching the use of generative AI in finance</description>
 <generator>quarto-1.7.30</generator>
-<lastBuildDate>Thu, 08 May 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 09 May 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Simulation</title>
+  <dc:creator>Kerry Back</dc:creator>
+  <link>https://finance-with-ai.org/posts/06-simulation/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://finance-with-ai.org/posts/06-simulation/monte-carlo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+</figure>
+</div>
+<p>Simulation and optimization can be done in spreadsheets but are better done elsewhere. I illustrate the AI + coding approach by simulating retirement plans and doing mean-variance optimization.</p>
+<p>A simple retirement plan specifies an initial account balance, the number of years and the amount to be saved each year until retirement, the number of years and the amount to be withdrawn each year after retirement, and an investment return each year. We can bypass worrying about inflation by doing everything in real terms: the deposits and withdrawals should be specified in today’s dollars, and the investment return should be the real rate of return. Taxes are complicated and important. It would certainly be feasible to do a detailed analysis of taxes for different investment vehicles (along the lines of <a href="https://learn-investments.rice-business.org/taxes/tax_vehicles">this</a>), but, since teaching personal finance is not my real goal, I just tell students to think of the deposits and withdrawals as being pre-tax, as in a 401k.</p>
+<p>One way to approach the simulation is to ask for a python function to be created that takes an initial account balance, a list of deposit amounts, a list of withdrawal amounts, and a list of investment returns as inputs and produces a table with four columns: the beginning-of-year balance, the dollar investment gain or loss, the deposit or withdrawal amount, and the end-of-year balance. The reason for outputting an entire table rather than just end-of-year balances is that it makes it easier to check that the timing and calculations are done correctly.</p>
+<p>We don’t have to type the lists that are inputs to the function. We can say, for example: “The initial balance is $40,000, there will be 30 deposits starting at $5,000 and growing by 4% per year, there will be 25 withdrawals of $100,000 each, and the investment return will be 10% each year. Use the function to calculate the table and show it.” We can do a small example to check that the function is working correctly before running the simulation. Julius has a <a href="https://julius.ai/docs/data-explorer/overview">data viewer</a> that makes it easy to examine the results. We can also ask for the results to be output as an Excel file (which produces a file with only numbers, not formulas).</p>
+<p>Once the function is working correctly, we can ask for a simulation. For example: “Simulate the investment returns as random draws from a normal distribution with a mean of 10% and a standard deviation of 10%. Simulate 1,000 lifetimes and retain the terminal account balance for each lifetime.” Then, we can ask for the mean or median of the terminal balances, a histogram, etc. The histogram is useful because it shows the positive skewness induced by compounding, which will also show up in the mean being larger than the median. This is a good opportunity to talk about the difference between arithmetic and geometric average returns and the effect of volatility on the difference.</p>
+<p>This is a nice example to build into an app. Everyone needs to do retirement planning, so students may be able to impress friends and family.</p>
+<hr>
+<p><em>First published on <a href="https://finance-with-ai.org">finance-with-ai.org</a></em></p>
+<p>Mean-variance optimization is one of those topics that was always awkward to teach with spreadsheets. It is clunky to define the portfolio variance in a spreadsheet for more than two assets, and we are forced to use Solver to find efficient portfolios or to deal with the further clunkiness of matrix inversion in a spreadsheet. Also, if we create an example for three assets and someone asks about four, then we have to almost entirely reengineer the spreadsheet. Luckily, the leading models have been trained on enough mean-variance material to know the formula <img src="https://latex.codecogs.com/png.latex?%5CSigma%5E%7B-1%7D%5Cmu"> and to correctly implement it each time. For these reasons, mean-variance optimization provides a very nice example to demonstrate the power of AI + python.</p>
+<p>If we want to implement constraints or to find the efficient frontier without a risk-free asset, then there are alternate routes the models may take, so it pays to be familiar with those before launching into live demos in class.</p>
+
+
+
+ ]]></description>
+  <category>Finance</category>
+  <guid>https://finance-with-ai.org/posts/06-simulation/</guid>
+  <pubDate>Fri, 09 May 2025 00:00:00 GMT</pubDate>
+  <media:content url="https://finance-with-ai.org/posts/06-simulation/monte-carlo.png" medium="image" type="image/png" height="96" width="144"/>
+</item>
 <item>
   <title>Creating Apps</title>
   <dc:creator>Kerry Back</dc:creator>
@@ -29,7 +63,7 @@
 <p>After the last session of my class in the spring, a student came up to me and said “I want to thank you. I never knew anything about programming, and now I can create apps. It’s amazing!” We have a few years, I think, when we can be the first to show students the power of AI + coding and have these rewarding moments. But soon everyone will know, and I’m not sure what we’ll do then. Maybe <a href="https://www.chronicle.com/article/are-you-ready-for-the-ai-university">AI will teach our courses</a>.</p>
 <p>A significant upside to app creation is that it makes the code permanent. Using AI + python to do a task repeatedly runs into the issue that there is some randomness in LLM code generation. The code will not be exactly the same each time. Given that it is important to verify that the code is correct (for example, by running it on small examples), this poses a problem. Putting working code in an app avoids this problem. It also makes the process of using the code simpler - there is no need to write a prompt each time.</p>
 <p>The streamlit, gradio, and dash libraries allow us to create web apps using only python code. The libraries provide python wrappers around HTML, CSS, and JavaScript. AI allows us to create web apps using those libraries just by prompting, because LLMs know the streamlit, gradio, and dash syntax. There are other tools (like <a href="https://replit.com/">Replit</a>) that directly take user prompts and write HTML, CSS, and JavaScript as well as python. I show students Replit but stick primarily with Julius and streamlit or gradio.</p>
-<p>I got some experience in creating apps when my colleague <a href="https://kevin-crotty.com/">Kevin Crotty</a> and I built an interactive app to illustrate financial concepts: <a href="learn-investments.rice-business.org">Learn Investments @ Rice Business</a>. It wasn’t long after finishing it that I realized that pretty much everything we had painstakingly constructed (with the great help of the dash and plotly libraries) could be generated by AI + coding with very little effort. Oh, well. At least I still have my day job. ☺️</p>
+<p>I got some experience in creating apps when my colleague <a href="https://kevin-crotty.com/">Kevin Crotty</a> and I built an interactive app to illustrate financial concepts: <a href="learn-investments.rice-business.org">Learn Investments @ Rice Business</a>. It wasn’t long after finishing it that I realized that pretty much everything we had painstakingly constructed (with the great help of the dash and plotly libraries) could be generated by AI + coding with very little effort. Oh, well. At least I still have my day job.</p>
 <p>To illustrate app creation for students, I return to the cost of equity calculation and ask Julius to create a streamlit (or gradio, which is very similar) app that allows the user to input a ticker, computes the cost of equity as before, and creates and downloads the PowerPoint deck as before.</p>
 <p>Creating this app is a multi-step process. As discussed in a <a href="https://finance-with-ai.org/posts/04-prompts/">previous post</a>, a safe way to do this is to ask for a python function to be created at each step and saved as a .py file. For example, (i) a function that takes a user-supplied ticker, estimates the beta and returns the beta and a regression plot, (ii) a function that takes a beta and returns a dictionary with the risk-free rate, beta, market risk premium, and cost of equity as the keys and the calculated values as the values, and (iii) a function that takes the regression plot and dictionary as inputs and returns a PowerPoint deck. As step (iv), we can ask Julius to put these together to create an app that allows the user to input a ticker and downloads the PowerPoint deck.</p>
 <p>Unfortunately, as of this writing, Julius cannot directly run the streamlit app. It is necessary to ask for an app.py file, download the app.py file, and run it on your own computer. To do this, you need python installed on your computer. I’m hopeful that the Julius developers will soon make this simpler. In the meantime, you can ask Julius how to install python, and you can ask Julius how to run the app on your own computer. I spend time in class walking students through the process (I also recorded some videos explaining the process, but I’m doubtful anyone ever looked at them!).</p>
@@ -94,7 +128,7 @@
 <p><img src="https://finance-with-ai.org/posts/03-capm/capm.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
 </figure>
 </div>
-<p>Calculating betas is another easy exercise to do with Julius. We can also estimate the market risk premium, and we can get the risk-free rate from FRED, so we can estimate the cost of equity capital according to the CAPM. This exercise provides the opportunity to explore Ken French’s <a href="https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html">data library</a> in the process of getting market excess returns.</p>
+<p>Calculating betas is another easy exercise to do with Julius. We can also estimate the market risk premium, and we can get the risk-free rate from FRED, so we can estimate the cost of equity capital according to the CAPM. This exercise provides the opportunity to explore <a href="https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html">Ken French’s data library</a> while getting market excess returns and risk-free rates.</p>
 <p>A big advantage of using AI is that things can be automated. A student this spring told me that a friend of his in the finance industry had just used AI to reduce the time required for a certain task he often had to do from two days to two hours. There are many stories like that. To illustrate automation in a simple setting, I use the CAPM calculation to show how PowerPoint decks can be created with AI + python. In a future post, I will explain how to use AI + python to build a web app that estimates a beta, calculates the cost of equity, and generates a PowerPoint deck - the user only has to input a ticker. And, the builder of the app only has to chat with Julius.</p>
 <p>To estimate betas, we need stock excess returns and market excess returns. I follow the usual academic convention of monthly returns over a 5-year period. To get monthly stock returns we can use yfinance (see <a href="https://finance-with-ai.org/posts/02-online-data/">Online Data and Visualization</a>). To get adjusted closing prices at a monthly frequency, simply ask Julius for them (the LLM will either use period=“1mo” in yf.download or it will use the pandas resample method to downsample daily prices to monthly prices). Ask for a bit more than five years, because we may lose some months when merging with the market data. Then compute returns as percent changes.</p>
 <p>To get market excess returns and the risk-free rate, we can use French’s data library. It’s interesting to start by asking Julius to list the datasets available in French’s data library. Then ask Julius to get the monthly three factors using pandas-datareader starting in 1926 and to compute the mean of Mkt-RF for the market risk premium estimate. You’ll want to annualize the market risk premium estimate (or you could just ask for the annual factors and the mean of annual Mkt-RF). If you don’t explicitly ask for pandas-datareader to be used, the LLM may write code to directly read the csv files on French’s website into pandas dataframes, which doesn’t work well, because each file contains text and contains multiple tables (monthly, annual, etc.).</p>
@@ -126,7 +160,7 @@
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://finance-with-ai.org/posts/02-online-data/spy-returns.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+<p><img src="https://finance-with-ai.org/posts/02-online-data/returns.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
 </figure>
 </div>
 <p>Grabbing and visualizing online data is a good place to start to demonstrate to students the power and simplicity of AI + python. <a href="https://finance.yahoo.com/">Yahoo Finance</a> is a great source of free online data about stock and option prices and corporate financial statements. The yfinance library is the best python library for retrieving it. <a href="https://fred.stlouisfed.org/">FRED</a> (Federal Reserve Economic Data) is a great source for macroeconomic data, including GDP, exchange rates, Treasury and corporate bond yields, crude oil prices, etc. The pandas-datareader library is the best python library for accessing FRED. Neither yfinance nor pandas-datareader requires you to obtain an API key.</p>
@@ -150,7 +184,7 @@
   <category>Python Tools</category>
   <guid>https://finance-with-ai.org/posts/02-online-data/</guid>
   <pubDate>Mon, 05 May 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://finance-with-ai.org/posts/02-online-data/spy-returns.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://finance-with-ai.org/posts/02-online-data/returns.png" medium="image" type="image/png" height="96" width="144"/>
 </item>
 <item>
   <title>Julius and the Democratization of Coding</title>
