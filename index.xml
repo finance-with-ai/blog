@@ -26,7 +26,7 @@
 <p><img src="https://finance-with-ai.org/posts/06-simulation/monte-carlo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
 </figure>
 </div>
-<p>Simulation can be done in a spreadsheet with <span class="citation" data-cites="Risk">@Risk</span> (though not on a Mac!) but is better done elsewhere. An easy example of the AI + coding approach is to simulate a retirement plan.</p>
+<p>Simulation can be done in a spreadsheet but is better done elsewhere. An easy example of the AI + coding approach is to simulate a retirement plan.</p>
 <p>A simple retirement plan specifies an initial account balance, the number of years and the amount to be saved each year until retirement, the number of years and the amount to be withdrawn each year after retirement, and an investment return each year. We can bypass worrying about inflation by doing everything in real terms: the deposits and withdrawals should be specified in today’s dollars, and the investment return should be the real rate of return. Taxes are complicated and important. It would certainly be feasible to do a detailed analysis of taxes for different investment vehicles (along the lines of <a href="https://learn-investments.rice-business.org/taxes/tax_vehicles">this</a>), but, since teaching personal finance is not my real goal, I just tell students to think of the deposits and withdrawals as being pre-tax, as in a 401k.</p>
 <p>One way to approach the simulation is to ask for a python function to be created that takes an initial account balance, a list of deposit amounts, a list of withdrawal amounts, and a list of investment returns as inputs and produces a table with five columns: the beginning-of-year balance, the % investment return, the dollar investment gain or loss, the deposit or withdrawal amount, and the end-of-year balance. The reason for outputting an entire table rather than just end-of-year balances is that it makes it easier to check that the timing and calculations are done correctly.</p>
 <p>We don’t have to type the lists that are inputs to the function. We can say, for example: “The initial balance is $40,000, there will be 30 deposits starting at $5,000 and growing by 4% per year, there will be 25 withdrawals of $100,000 each, and the investment return will be 10% each year. Use the function to calculate the table and show it.” We can do a small example to check that the function is working correctly before running the simulation. Julius has a <a href="https://julius.ai/docs/data-explorer/overview">data viewer</a> that makes it easy to examine the results. We can also ask for the results to be output as an Excel file (which produces a file with only numbers, not formulas).</p>
@@ -55,7 +55,7 @@
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://finance-with-ai.org/posts/05-apps/code_launch_logo_gray_wide.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+<p><img src="https://finance-with-ai.org/posts/05-apps/code_launch_logo_gray_wide2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
 </figure>
 </div>
 <p>After the last session of my class in the spring, a student came up to me and said “I want to thank you. I never knew anything about programming, and now I can create apps. It’s amazing!” We have a few years, I think, when we can be the first to show students the power of AI + coding and have these rewarding moments. But soon everyone will know, and I’m not sure what we’ll do then. Maybe <a href="https://www.chronicle.com/article/are-you-ready-for-the-ai-university">AI will teach our courses</a>.</p>
@@ -77,7 +77,7 @@
   <category>Python Tools</category>
   <guid>https://finance-with-ai.org/posts/05-apps/</guid>
   <pubDate>Thu, 08 May 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://finance-with-ai.org/posts/05-apps/code_launch_logo_gray_wide.png" medium="image" type="image/png" height="96" width="144"/>
+  <media:content url="https://finance-with-ai.org/posts/05-apps/code_launch_logo_gray_wide2.png" medium="image" type="image/png" height="87" width="144"/>
 </item>
 <item>
   <title>Prompt Engineering (or Not)</title>
