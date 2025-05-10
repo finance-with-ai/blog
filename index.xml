@@ -221,7 +221,7 @@
   <category>Python Tools</category>
   <guid>https://finance-with-ai.org/posts/02-online-data/</guid>
   <pubDate>Mon, 05 May 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://finance-with-ai.org/posts/02-online-data/returns.png" medium="image" type="image/png" height="144" width="144"/>
+  <media:content url="https://finance-with-ai.org/posts/02-online-data/returns.png" medium="image" type="image/png" height="96" width="144"/>
 </item>
 <item>
   <title>Julius and the Democratization of Coding</title>
@@ -269,7 +269,7 @@
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://finance-with-ai.org/posts/00-welcome/teaching_finance_with_ai_logo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+<p><img src="https://finance-with-ai.org/posts/00-welcome/logo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
 </figure>
 </div>
 <p>The purpose of this blog and the site <a href="https://finance-with-ai.org">finance-with-ai.org</a> is to communicate things I’ve learned about teaching MBA students at Rice University how to do financial analyses using “AI + coding” and more broadly how generative AI can and is being used in the finance industry. I will post short notes on what I’ve learned about teaching this topic and on related things I find interesting. The blog is intended to be a resource for finance instructors at the undergraduate, MBA, and MSF levels.</p>
@@ -285,7 +285,7 @@
  ]]></description>
   <guid>https://finance-with-ai.org/posts/00-welcome/</guid>
   <pubDate>Sat, 03 May 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://finance-with-ai.org/posts/00-welcome/teaching_finance_with_ai_logo.png" medium="image" type="image/png" height="144" width="144"/>
+  <media:content url="https://finance-with-ai.org/posts/00-welcome/logo.png" medium="image" type="image/png" height="102" width="144"/>
 </item>
 </channel>
 </rss>
