@@ -2,46 +2,50 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://finance-with-ai.org/subscribe.html</loc>
-    <lastmod>2025-05-10T06:01:45.573Z</lastmod>
+    <lastmod>2025-05-10T18:04:50.172Z</lastmod>
+  </url>
+  <url>
+    <loc>https://finance-with-ai.org/posts/08-apis/index.html</loc>
+    <lastmod>2025-05-10T18:04:50.163Z</lastmod>
   </url>
   <url>
     <loc>https://finance-with-ai.org/posts/06-simulation/index.html</loc>
-    <lastmod>2025-05-10T06:01:45.553Z</lastmod>
+    <lastmod>2025-05-10T18:04:50.150Z</lastmod>
   </url>
   <url>
     <loc>https://finance-with-ai.org/posts/04-prompts/index.html</loc>
-    <lastmod>2025-05-10T06:01:45.551Z</lastmod>
+    <lastmod>2025-05-10T18:04:50.141Z</lastmod>
   </url>
   <url>
     <loc>https://finance-with-ai.org/posts/02-online-data/index.html</loc>
-    <lastmod>2025-05-10T06:01:45.545Z</lastmod>
+    <lastmod>2025-05-10T18:04:50.135Z</lastmod>
   </url>
   <url>
     <loc>https://finance-with-ai.org/posts/00-welcome/index.html</loc>
-    <lastmod>2025-05-10T06:01:45.543Z</lastmod>
+    <lastmod>2025-05-10T18:04:50.133Z</lastmod>
   </url>
   <url>
     <loc>https://finance-with-ai.org/about.html</loc>
-    <lastmod>2025-05-10T06:01:45.514Z</lastmod>
+    <lastmod>2025-05-10T18:04:50.104Z</lastmod>
   </url>
   <url>
     <loc>https://finance-with-ai.org/index.html</loc>
-    <lastmod>2025-05-10T06:01:45.519Z</lastmod>
+    <lastmod>2025-05-10T18:04:50.108Z</lastmod>
   </url>
   <url>
     <loc>https://finance-with-ai.org/posts/01-julius/index.html</loc>
-    <lastmod>2025-05-10T06:01:45.544Z</lastmod>
+    <lastmod>2025-05-10T18:04:50.134Z</lastmod>
   </url>
   <url>
     <loc>https://finance-with-ai.org/posts/03-capm/index.html</loc>
-    <lastmod>2025-05-10T06:01:45.548Z</lastmod>
+    <lastmod>2025-05-10T18:04:50.138Z</lastmod>
   </url>
   <url>
     <loc>https://finance-with-ai.org/posts/05-apps/index.html</loc>
-    <lastmod>2025-05-10T06:01:45.553Z</lastmod>
+    <lastmod>2025-05-10T18:04:50.150Z</lastmod>
   </url>
   <url>
     <loc>https://finance-with-ai.org/posts/07-mean-variance/index.html</loc>
-    <lastmod>2025-05-10T06:01:45.561Z</lastmod>
+    <lastmod>2025-05-10T18:04:50.158Z</lastmod>
   </url>
 </urlset>

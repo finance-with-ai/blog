@@ -10,7 +10,105 @@
 <atom:link href="https://finance-with-ai.org/index.xml" rel="self" type="application/rss+xml"/>
 <description>Teaching the use of generative AI in finance</description>
 <generator>quarto-1.7.30</generator>
-<lastBuildDate>Sat, 10 May 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sun, 11 May 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>API Calls</title>
+  <dc:creator>Kerry Back</dc:creator>
+  <link>https://finance-with-ai.org/posts/08-apis/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://finance-with-ai.org/posts/08-apis/apis.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+</figure>
+</div>
+<p>This <a href="https://hbsp.harvard.edu/product/HK1437-PDF-ENG">HBS case</a>, about implementing generative AI at Deloitte Canada, is a useful tool for teaching the benefits, risks, and strategies of implementing AI in a corporate environment. Efficiency is of course the key benefit, and data security, client trust, and compliance are key issues. The general strategy for implementation involves creating a custom channel through which all employees chat with an LLM, a channel that passes relevant corporate standards to the LLM in each chat, that allows monitoring, and that includes a guarantee of data privacy. To complement the case, I show students that they can use Julius to create a mini version of this, namely a custom chatbot that adds whatever context they want to each prompt (unforunately, it can’t guarantee data privacy). This can be done with a custom GPT from OpenAI, but seeing code that produces a custom chatbot makes everything more transparent.</p>
+<p>To create this, we need an API key from an LLM provider. As of this writing, OpenAI provides keys even on free accounts. Billing is on a per use basis - it is miniscule on demonstration scales. As I will explain, there are also API keys for LLMs that are completely free. Julius provides a facility for storing an API key as a “secret key.” It is not exposed to the LLM during the coding that creates the custom chatbot.</p>
+<p>To start the exercise, it is useful to show students the code that executes an API call without all of the surrounding code that creates an app. I gave Julius the following example prompt:<sup>1</sup> <em>send the following to openAI GPT-4 using my api key “What is the best type of pizza? Answer in pig Latin.”</em> Here is the code that Claude 3.5 wrote in response:</p>
+<pre><code>from openai import OpenAI
+import os
+
+# Initialize the OpenAI client with the API key from environment variable
+client = OpenAI(api_key=os.environ.get('OPEN_AI_KEY'))
+
+# Send the query
+response = client.chat.completions.create(
+    model="gpt-4",
+    messages=[
+        {"role": "user", "content": "What is the best type of pizza? \
+        Answer in pig Latin."}
+    ]
+)
+
+# Print the response
+print("Response:", response.choices[0].message.content)</code></pre>
+<p>We can see from this code that the messages will be sent to OpenAI’s GPT-4 (note that the LLM you’re using in Julius will balk if you ask for an API call to an LLM that appeared after the training of your Julius LLM ended - for example, you can’t get GPT-o3 using Claude 3.5 - but you can edit the code in Julius to select the model you want). The messages object is a list containing a single dictionary (it can have many more, as we will see in a moment). The dictionary has two keys: “role” and “content.” The response object contains the LLM’s response, and the content of the response is accessed as response.choices[0].message.content. When the code is executed, the computer executing it sends the messages, gets the response, and prints the content of the response. All of the work is done by the client object, which is created by the OpenAI function, using my API key that is read from its “secret key” storage by the os.environ.get function. What I got from Julius after the code executed was “The GPT-4 model responded with: Response: Epperonipay.””</p>
+<p>To create a custom chatbot, it is enough to say something like “Create a custom chatbot as a streamlit app. It should send prompts to GPT-4 with the additional context ‘You are a business professional. Answer in a business-like fashion.’ Use my OpenAI API key that is stored as a secret key.” Of course, you could also do more interesting things, like requesting an answer in Pig Latin perhaps. The heart of the code that Claude 3.5 wrote for me is</p>
+<pre><code>messages = [
+        {"role": "system", "content": 
+        "You are a business professional.  Answer in a business-like fashion."}
+    ]
+    
+    while True:
+        # Get user input
+        user_input = input("You: ").strip()
+        
+        # Check for quit command
+        if user_input.lower() == 'quit':
+            print("Oodbye-gay! 🐷")
+            break
+        
+    # Add user message to history
+    messages.append({"role": "user", "content": user_input})
+    
+
+        # Get response from OpenAI
+        response = client.chat.completions.create(
+            model="gpt-4",
+            messages=messages,
+            stream=True
+        )
+        
+        # Print assistant response
+        print("Bot: ", end="", flush=True)
+        full_response = ""
+        
+        # Stream the response
+        for chunk in response:
+            if chunk.choices[0].delta.content is not None:
+                content = chunk.choices[0].delta.content
+                print(content, end="", flush=True)
+                full_response += content
+        
+        print()  # New line after response
+        
+        # Add assistant response to history
+        messages.append({"role": "assistant", "content": full_response})</code></pre>
+<p>This initializes the message list with the context I provided about being a business professional. Then it sets up a while loop that runs until the app is exited. Within the loop, each new prompt is added to the message list and the now longer list is sent to the LLM. The LLM response is printed each time and added to the message list also. In this way, the LLM receives the entire chat history after each user prompt.</p>
+<p>On the first occasion that I requested this Streamlit app from Julius, I received instead a python script (a .py file) that when executed in my terminal created a chatbot running in the terminal. That is interesting too. If or when you do get a Streamlit app and if you want to deploy it to the cloud, take advantage of the cloud provider’s secret key procedure to maintain security of your API key.</p>
+<p>We can get free access to a number of open source LLMs via services like <a href="https://huggingface.co/">Hugging Face</a> or <a href="https://openrouter.ai/">Open Router</a>. Open Router describes itself as “The Unified Interface for LLMs.” It provides access to over 300 LLMs as of this writing. The essence of the service is that we get an API key from the provider(s) we want to use, store the key(s) at Open Router, and get an API key from Open Router. We then direct all of our API calls to Open Router, specifying an LLM to use, and Open Router forwards the call to the LLM. This provides a unified syntax for API calls (Open Router uses the OpenAI standard) and unified billing (the LLM providers charge Open Router which then charges us). For someone who is not a heavy user of API calls, the prime benefit of using Open Router is that it provides free access to many open source LLMs. It is worth visiting Open Router in class just to show students the number of LLMs that have been created.</p>
+<p>I took discussing Open Router as an opportunity to show students <a href="https://replit.com/~">Replit</a>, which is an AI + coding platform focused on app creation. Before class, as an illustration, I created a chatbot app that scrapes headlines from <a href="https://www.theguardian.com/us">The Guardian</a> and sends them to the free LLama 4 Scout model for a determination as to whether it is a good, bad, or mixed news day and then allows for additional chatting. It is, of course, just a <a href="https://guardian-pulse-kerryback.replit.app/">toy</a>, but it is a concrete example of the chatbot creation process. By the way, I was happy I did this before class, because Replit experienced a frustrating amount of confusion between OPENAI_API_KEY and OPEN_ROUTER_API_KEY. To be so smart, AI can sometimes be surprisingly dumb.</p>
+<hr>
+<p><em>First published on <a href="https://finance-with-ai.org">finance-with-ai.org</a></em></p>
+
+
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Pig Latin is a very old English language variation, mostly of interest to children, that moves any initial consonant phoneme of a word to the end and also adds “ay” to the end of each word. I think I should credit this example to some blog post that I read sometime, but which post escapes me.↩︎</p></li>
+</ol>
+</section></div> ]]></description>
+  <category>AI Overview</category>
+  <guid>https://finance-with-ai.org/posts/08-apis/</guid>
+  <pubDate>Sun, 11 May 2025 00:00:00 GMT</pubDate>
+  <media:content url="https://finance-with-ai.org/posts/08-apis/apis.png" medium="image" type="image/png" height="96" width="144"/>
+</item>
 <item>
   <title>Mean-Variance Frontier</title>
   <dc:creator>Kerry Back</dc:creator>
@@ -23,10 +121,10 @@
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://finance-with-ai.org/posts/07-mean-variance/tangency.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+<p><img src="https://finance-with-ai.org/posts/07-mean-variance/mean-variance.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
 </figure>
 </div>
-<p>Mean-variance optimization is one of those topics that was always awkward to teach with spreadsheets. It is messy to define the portfolio variance in a spreadsheet for more than two assets, and we are forced to use Solver to find efficient portfolios or to deal with Excel’s matrix algebra functions that operate on arrays. Also, if we create an example for three assets and someone asks about four, then we have to almost entirely reengineer the spreadsheet. I don’t think we actually expect students to do mean-variance analysis in a spreadsheet after they graduate - we’re just teaching the concept (I think). But, we can now teach the concept without the clunkiness of setting it up in a spreadsheet.</p>
+<p>Mean-variance optimization is one of those topics that has always been awkward to teach with spreadsheets. It is messy to define the portfolio variance in a spreadsheet for more than two assets, and we are forced to use Solver to find efficient portfolios or to deal with Excel’s matrix algebra functions that operate on arrays. Also, if we create an example for three assets and someone asks about four, then we have to almost entirely reengineer the spreadsheet. I don’t think we actually expect students to do mean-variance analysis in a spreadsheet after they graduate - we’re just teaching the concept (I think). But, we can now teach the concept without the clunkiness of setting it up in a spreadsheet.</p>
 <p>We want to generate the classic figure above and to find the portfolios crresponding to the efficient mean-variance combinations. I prefer to start with the tangency portfolio, because it is simpler than finding the frontier of only risky assets, and because it is where we want to end up anyway. We can specify the risk-free rate, the expected returns of the assets, the standard deviations of the assets and their correlations and just ask Julius to compute the tangency portfolio. The LLMs know how to do it. With high probability, they will generate code to compute the familiar Sigma inverse times mu and then divide by the sum of the elements of that vector so the weights sum to one (it is possible but much less likely that they will use a numerical optimization algorithm from scipy to maximize the Sharpe ratio). This means that we have to explain Sigma inverse times mu.</p>
 <p>I take a very hand-waving approach to explain the formula. I remind students first that at the top of a hill the slope must be zero and second that the slope of a function is its derivative, so a maximum is the solution of an equation “derivative = 0.” Of course, they have all seen that at some point in their lives. I then show them (without deriving) the equations for maximizing the Sharpe ratio with three risky assets:</p>
 <div class="quarto-figure quarto-figure-center">
@@ -48,7 +146,7 @@
   <category>Finance</category>
   <guid>https://finance-with-ai.org/posts/07-mean-variance/</guid>
   <pubDate>Sat, 10 May 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://finance-with-ai.org/posts/07-mean-variance/tangency.png" medium="image" type="image/png" height="144" width="144"/>
+  <media:content url="https://finance-with-ai.org/posts/07-mean-variance/mean-variance.png" medium="image" type="image/png" height="96" width="144"/>
 </item>
 <item>
   <title>Simulation</title>
@@ -116,7 +214,7 @@
   <category>Python Tools</category>
   <guid>https://finance-with-ai.org/posts/05-apps/</guid>
   <pubDate>Thu, 08 May 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://finance-with-ai.org/posts/05-apps/apps.png" medium="image" type="image/png" height="96" width="144"/>
+  <media:content url="https://finance-with-ai.org/posts/05-apps/apps.png" medium="image" type="image/png" height="144" width="144"/>
 </item>
 <item>
   <title>Prompt Engineering (or Not)</title>
@@ -130,7 +228,7 @@
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://finance-with-ai.org/posts/04-prompts/engineering.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+<p><img src="https://finance-with-ai.org/posts/04-prompts/prompts.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
 </figure>
 </div>
 <p>I use <a href="https://mentimeter.com/">Menti</a> surveys periodically to ask students what they would like to learn more about, and how to write effective prompts frequently shows up. In the first bit of time after ChatGPT 3.5 was introduced, there was a lot of chatter online about prompt engineering This seems to have died down somewhat, and for good reason. The models are so good now that they don’t generally require any special prompting. In particular, you do not need to tell Julius “you are an expert coder …” If any role-setting is even needed now, which is doubtful, I think it must be supplied in the context provided by Julius to the LLMs.</p>
@@ -148,7 +246,7 @@
   <category>AI Overview</category>
   <guid>https://finance-with-ai.org/posts/04-prompts/</guid>
   <pubDate>Wed, 07 May 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://finance-with-ai.org/posts/04-prompts/engineering.png" medium="image" type="image/png" height="96" width="144"/>
+  <media:content url="https://finance-with-ai.org/posts/04-prompts/prompts.png" medium="image" type="image/png" height="96" width="144"/>
 </item>
 <item>
   <title>CAPM and PowerPoint</title>
@@ -235,7 +333,7 @@
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://finance-with-ai.org/posts/01-julius/julius2.pngg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:30.0%"></p>
+<p><img src="https://finance-with-ai.org/posts/01-julius/julius.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:30.0%"></p>
 </figure>
 </div>
 <p>The world is aware that generative AI has made coders more efficient, but I don’t know if there is as much recognition of the more important fact that gen AI has made coding accessible to non-coders. I expect this to change rapidly by word of mouth: Once exposed to the wonder of coding with gen AI, one cannot help but want to share the word. We can accelerate that change for our students.</p>
@@ -255,7 +353,7 @@
   <category>AI Overview</category>
   <guid>https://finance-with-ai.org/posts/01-julius/</guid>
   <pubDate>Sun, 04 May 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://finance-with-ai.org/posts/01-julius/julius2.png" medium="image" type="image/png"/>
+  <media:content url="https://finance-with-ai.org/posts/01-julius/julius.png" medium="image" type="image/png" height="144" width="144"/>
 </item>
 <item>
   <title>Teaching Finance with AI</title>
