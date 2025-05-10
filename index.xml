@@ -146,7 +146,7 @@ print("Response:", response.choices[0].message.content)</code></pre>
   <category>Finance</category>
   <guid>https://finance-with-ai.org/posts/07-mean-variance/</guid>
   <pubDate>Sat, 10 May 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://finance-with-ai.org/posts/07-mean-variance/mean-variance.png" medium="image" type="image/png" height="96" width="144"/>
+  <media:content url="https://finance-with-ai.org/posts/07-mean-variance/mean-variance.png" medium="image" type="image/png" height="102" width="144"/>
 </item>
 <item>
   <title>Simulation</title>
