@@ -48,7 +48,7 @@
   <category>Finance</category>
   <guid>https://finance-with-ai.org/posts/07-mean-variance/</guid>
   <pubDate>Sat, 10 May 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://finance-with-ai.org/posts/07-mean-variance/tangency.png" medium="image" type="image/png" height="96" width="144"/>
+  <media:content url="https://finance-with-ai.org/posts/07-mean-variance/tangency.png" medium="image" type="image/png" height="144" width="144"/>
 </item>
 <item>
   <title>Simulation</title>
@@ -162,7 +162,7 @@
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://finance-with-ai.org/posts/03-capm/capm.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+<p><img src="https://finance-with-ai.org/posts/03-capm/capm.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
 </figure>
 </div>
 <p>Calculating betas is another easy exercise to do with Julius. We can also estimate the market risk premium, and we can get the risk-free rate from FRED, so we can estimate the cost of equity capital according to the CAPM. This exercise provides the opportunity to explore <a href="https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html">Ken French’s data library</a> while getting market excess returns and risk-free rates.</p>
@@ -183,7 +183,7 @@
   <category>Python Tools</category>
   <guid>https://finance-with-ai.org/posts/03-capm/</guid>
   <pubDate>Tue, 06 May 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://finance-with-ai.org/posts/03-capm/capm.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://finance-with-ai.org/posts/03-capm/capm.png" medium="image" type="image/png" height="133" width="144"/>
 </item>
 <item>
   <title>Online Data and Visualization</title>
