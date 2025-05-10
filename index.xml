@@ -94,7 +94,7 @@
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://finance-with-ai.org/posts/05-apps/code_launch_logo_gray_wide2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+<p><img src="https://finance-with-ai.org/posts/05-apps/apps.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
 </figure>
 </div>
 <p>After the last session of my class in the spring, a student came up to me and said “I want to thank you. I never knew anything about programming, and now I can create apps. It’s amazing!” We have a few years, I think, when we can be the first to show students the power of AI + coding and have these rewarding moments. But soon everyone will know, and I’m not sure what we’ll do then. Maybe <a href="https://www.chronicle.com/article/are-you-ready-for-the-ai-university">AI will teach our courses</a>.</p>
@@ -116,7 +116,7 @@
   <category>Python Tools</category>
   <guid>https://finance-with-ai.org/posts/05-apps/</guid>
   <pubDate>Thu, 08 May 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://finance-with-ai.org/posts/05-apps/code_launch_logo_gray_wide2.png" medium="image" type="image/png" height="87" width="144"/>
+  <media:content url="https://finance-with-ai.org/posts/05-apps/apps.png" medium="image" type="image/png" height="144" width="144"/>
 </item>
 <item>
   <title>Prompt Engineering (or Not)</title>
