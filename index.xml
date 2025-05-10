@@ -80,7 +80,7 @@
   <category>Finance</category>
   <guid>https://finance-with-ai.org/posts/06-simulation/</guid>
   <pubDate>Fri, 09 May 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://finance-with-ai.org/posts/06-simulation/monte-carlo.png" medium="image" type="image/png" height="144" width="144"/>
+  <media:content url="https://finance-with-ai.org/posts/06-simulation/monte-carlo.png" medium="image" type="image/png" height="96" width="144"/>
 </item>
 <item>
   <title>Creating Apps</title>
@@ -235,7 +235,7 @@
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://finance-with-ai.org/posts/01-julius/julius.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:30.0%"></p>
+<p><img src="https://finance-with-ai.org/posts/01-julius/julius2.pngg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:30.0%"></p>
 </figure>
 </div>
 <p>The world is aware that generative AI has made coders more efficient, but I don’t know if there is as much recognition of the more important fact that gen AI has made coding accessible to non-coders. I expect this to change rapidly by word of mouth: Once exposed to the wonder of coding with gen AI, one cannot help but want to share the word. We can accelerate that change for our students.</p>
@@ -255,7 +255,7 @@
   <category>AI Overview</category>
   <guid>https://finance-with-ai.org/posts/01-julius/</guid>
   <pubDate>Sun, 04 May 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://finance-with-ai.org/posts/01-julius/julius.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://finance-with-ai.org/posts/01-julius/julius2.png" medium="image" type="image/png"/>
 </item>
 <item>
   <title>Teaching Finance with AI</title>
