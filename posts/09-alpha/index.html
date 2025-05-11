@@ -280,14 +280,8 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#a-good-example-for-this-exercise-is-fidelity-magellan-tickerfmagx.-it-is-remarkable-to-see-how-much-alpha-the-fund-earned-under-the-stewardship-of-peter-lynch-and-how-much-negative-alpha-it-produced-afterwards." id="toc-a-good-example-for-this-exercise-is-fidelity-magellan-tickerfmagx.-it-is-remarkable-to-see-how-much-alpha-the-fund-earned-under-the-stewardship-of-peter-lynch-and-how-much-negative-alpha-it-produced-afterwards." class="nav-link active" data-scroll-target="#a-good-example-for-this-exercise-is-fidelity-magellan-tickerfmagx.-it-is-remarkable-to-see-how-much-alpha-the-fund-earned-under-the-stewardship-of-peter-lynch-and-how-much-negative-alpha-it-produced-afterwards.">A good example for this exercise is Fidelity Magellan (ticker=FMAGX). It is remarkable to see how much alpha the fund earned under the stewardship of Peter Lynch and how much negative alpha it produced afterwards.</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -336,12 +330,11 @@ ul.task-list li input[type="checkbox"] {
 <p>It is worth stressing to students that a positive alpha does not mean that an investor should move all of his or her money into the fund. A fund can have a positive alpha but have a lower Sharpe ratio than the market. In fact, a fund has a positive alpha if and only if its Sharpe ratio is larger than the market’s Sharpe ratio <em>multiplied by the correlation between the fund and the market</em>. Because correlations are less than one, the Sharpe ratio hurdle for a fund to earn positive alpha is lower than the market Sharpe ratio. An interactive figure illustrating this principle can be found <a href="https://learn-investments.rice-business.org/capm/alphas-sharpes">here</a>. An extreme example is a fund with a zero beta. Such a fund has a positive alpha if and only if its Sharpe ratio is positive, meaning that it beats the risk-free return on average.</p>
 <p>While investors should not necessarily move all of their money to a positive alpha fund, they should move some of their money to the fund, assuming they care only about mean and variance and not higher moments. Mean-variance efficiency can be improved by shifting money from the market to a positive alpha fund. This is shown by Dybvig and Ross (Journal of Finance, 1985).</p>
 <p>In an <a href="https://finance-with-ai/02-capm">earlier post</a>, I explained how to use Julius to run the CAPM regression, using stock prices from Yahoo and market and risk-free returns from <a href="https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html">French’s data library</a>. We can do the same with a mutual fund ticker. Rather than using the most recent 60 months as in the earlier post, I prefer to run the regression for this exercise using all available data. Then, we can ask Julius to compute the beta-hedged mutual fund return each month. By beta hedging, I mean taking out the market exposure as R - beta * (Rm - Rf). According to the CAPM, the average value of this beta-hedged return should be the risk-free return Rf. We can ask Julius to compound the risk-free returns and compound the beta-hedged mutual fund returns over time and plot them. If the beta-hedged returns outperform the risk-free returns, then the fund is earning alpha. It is useful to ask for the plot with a log scale on the y axis. Then, we can easily see the periods in which the fund was generating positive alpha (the slope of the hedged fund curve is greater than the slope of the risk-free curve) and the periods in which it was generating negative alpha.</p>
-<section id="a-good-example-for-this-exercise-is-fidelity-magellan-tickerfmagx.-it-is-remarkable-to-see-how-much-alpha-the-fund-earned-under-the-stewardship-of-peter-lynch-and-how-much-negative-alpha-it-produced-afterwards." class="level2">
-<h2 class="anchored" data-anchor-id="a-good-example-for-this-exercise-is-fidelity-magellan-tickerfmagx.-it-is-remarkable-to-see-how-much-alpha-the-fund-earned-under-the-stewardship-of-peter-lynch-and-how-much-negative-alpha-it-produced-afterwards.">A good example for this exercise is Fidelity Magellan (ticker=FMAGX). It is remarkable to see how much alpha the fund earned under the stewardship of Peter Lynch and how much negative alpha it produced afterwards.</h2>
+<p>A good example for this exercise is Fidelity Magellan (ticker=FMAGX). It is remarkable how much alpha the fund earned under the stewardship of Peter Lynch and how much negative alpha it produced afterwards.</p>
+<hr>
 <p><em>First published on <a href="https://finance-with-ai.org">finance-with-ai.org</a></em></p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
