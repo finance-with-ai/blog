@@ -2,58 +2,74 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://finance-with-ai.org/subscribe.html</loc>
-    <lastmod>2025-05-12T14:31:34.273Z</lastmod>
+    <lastmod>2025-05-12T23:07:24.736Z</lastmod>
+  </url>
+  <url>
+    <loc>https://finance-with-ai.org/posts/10-s-excel/index.html</loc>
+    <lastmod>2025-05-12T23:07:24.720Z</lastmod>
+  </url>
+  <url>
+    <loc>https://finance-with-ai.org/posts/10-q-databases/index.html</loc>
+    <lastmod>2025-05-12T23:07:24.706Z</lastmod>
   </url>
   <url>
     <loc>https://finance-with-ai.org/posts/10-fama-french/index.html</loc>
-    <lastmod>2025-05-12T14:31:34.256Z</lastmod>
+    <lastmod>2025-05-12T23:07:24.679Z</lastmod>
   </url>
   <url>
     <loc>https://finance-with-ai.org/posts/08-apis/index.html</loc>
-    <lastmod>2025-05-12T14:31:34.251Z</lastmod>
+    <lastmod>2025-05-12T23:07:24.673Z</lastmod>
   </url>
   <url>
     <loc>https://finance-with-ai.org/posts/06-simulation/index.html</loc>
-    <lastmod>2025-05-12T14:31:34.240Z</lastmod>
+    <lastmod>2025-05-12T23:07:24.663Z</lastmod>
   </url>
   <url>
     <loc>https://finance-with-ai.org/posts/04-prompts/index.html</loc>
-    <lastmod>2025-05-12T14:31:34.230Z</lastmod>
+    <lastmod>2025-05-12T23:07:24.653Z</lastmod>
   </url>
   <url>
     <loc>https://finance-with-ai.org/posts/02-online-data/index.html</loc>
-    <lastmod>2025-05-12T14:31:34.226Z</lastmod>
+    <lastmod>2025-05-12T23:07:24.649Z</lastmod>
   </url>
   <url>
     <loc>https://finance-with-ai.org/posts/00-welcome/index.html</loc>
-    <lastmod>2025-05-12T14:31:34.224Z</lastmod>
+    <lastmod>2025-05-12T23:07:24.647Z</lastmod>
   </url>
   <url>
     <loc>https://finance-with-ai.org/about.html</loc>
-    <lastmod>2025-05-12T14:31:34.194Z</lastmod>
+    <lastmod>2025-05-12T23:07:24.617Z</lastmod>
   </url>
   <url>
     <loc>https://finance-with-ai.org/index.html</loc>
-    <lastmod>2025-05-12T14:31:34.198Z</lastmod>
+    <lastmod>2025-05-12T23:07:24.622Z</lastmod>
   </url>
   <url>
     <loc>https://finance-with-ai.org/posts/01-julius/index.html</loc>
-    <lastmod>2025-05-12T14:31:34.225Z</lastmod>
+    <lastmod>2025-05-12T23:07:24.648Z</lastmod>
   </url>
   <url>
     <loc>https://finance-with-ai.org/posts/03-capm/index.html</loc>
-    <lastmod>2025-05-12T14:31:34.228Z</lastmod>
+    <lastmod>2025-05-12T23:07:24.651Z</lastmod>
   </url>
   <url>
     <loc>https://finance-with-ai.org/posts/05-apps/index.html</loc>
-    <lastmod>2025-05-12T14:31:34.240Z</lastmod>
+    <lastmod>2025-05-12T23:07:24.663Z</lastmod>
   </url>
   <url>
     <loc>https://finance-with-ai.org/posts/07-mean-variance/index.html</loc>
-    <lastmod>2025-05-12T14:31:34.247Z</lastmod>
+    <lastmod>2025-05-12T23:07:24.670Z</lastmod>
   </url>
   <url>
     <loc>https://finance-with-ai.org/posts/09-alpha/index.html</loc>
-    <lastmod>2025-05-12T14:31:34.255Z</lastmod>
+    <lastmod>2025-05-12T23:07:24.678Z</lastmod>
+  </url>
+  <url>
+    <loc>https://finance-with-ai.org/posts/10-privacy/index.html</loc>
+    <lastmod>2025-05-12T23:07:24.685Z</lastmod>
+  </url>
+  <url>
+    <loc>https://finance-with-ai.org/posts/10-r-teaching/index.html</loc>
+    <lastmod>2025-05-12T23:07:24.706Z</lastmod>
   </url>
 </urlset>

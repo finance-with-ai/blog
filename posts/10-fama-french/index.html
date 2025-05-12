@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.30">
+<meta name="generator" content="quarto-1.7.31">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -38,8 +38,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-de070a7b0ab54f8780927367ac907214.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-2b3e328b71be8d25427581baeb23079b.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ef56b68f8fa1e9d2ba328e99e439f80.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-68973f87371bbb9c5c0812d3c7110dbb.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
@@ -328,7 +328,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <p>The CAPM is intuitively reasonable and is <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3994848">widely used by companies to estimate their cost of capital</a>, but it is well known to do a poor job of explaining average returns. I like to show students this <a href="https://learn-investments.rice-business.org/capm/sml-industries">interactive plot</a> of estimated betas and average returns for the Fama-French 48 industries. Hovering over the data points brings up the industry names. As students should expect, we see tobacco, alcoholic beverages, and defense among the low beta industries, and we see steel and construction among the high beta industries. However, we see very little difference between the average returns of low beta industries and high beta industries. In other words, the empirical security market line is too flat, as is well known. Other pages on the same website show the <a href="https://learn-investments.rice-business.org/factor-investing/quintiles">returns</a> of characteristic-sorted portfolios and their <a href="https://learn-investments.rice-business.org/capm/two-way-capm">CAPM alphas and t-statistics</a>, drawing on <a href="https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html">Ken French’s data library</a>.</p>
 <p>The Fama-French model is <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3994848">seldom used by companies to estimate their cost of capital</a>, but it and other factor models are often used as attribution analysis when evaluating the performance of fund managers. To conduct such an analysis, we can follow the same process as for the <a href="https://finance-with-ai.org/posts/03-capm/">CAPM regression</a> and <a href="https://finance-with-ai.org/posts/09-alpha/">Jensen’s alpha</a> but asking Julius to get the five Fama-French factors from French’s data library and to regress excess returns on the five factors. We can calculate the contribution of each factor to the average fund (or stock) return by multiplying the factor beta by the mean factor value over the sample.</p>
-<p>This exercise could obviously be done in a spreadsheet, but it is a different experience doing it with AI + python. With AI + python, students can get all the data themselves quickly, and it is also quick to run the regression and compute factor contributions. Because we don’t have to spend time explaining how to implement the calculations, there is more time to discuss why it could be reasonable to regard the Fama-French factors as proxies for risks that investors care about and consequently be priced - or to discuss any other view one might have about the Fama-French model. Plus, the LLMs know about the Fama-French model, and, at least with Julius, their chatting will reinforce students’ learning.</p>
+<p>This exercise could obviously be done in a spreadsheet, but it is a different experience doing it with AI + python. With AI + python, students can get all the data themselves quickly, and it is also quick to run the regression and compute factor contributions. Because we don’t have to spend time explaining how to implement the calculations, there is more time to discuss why it could be reasonable to regard the Fama-French factors as proxies for risks that investors care about and which are consequently priced - or to discuss any other view one might have about the Fama-French model. Plus, the LLMs know about the Fama-French model, and, at least with Julius, their chatting will reinforce students’ learning.</p>
 <hr>
 <p><em>First published on <a href="https://finance-with-ai.org">finance-with-ai.org</a></em></p>
 
