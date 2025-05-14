@@ -340,7 +340,7 @@ print("Response:", response.choices[0].message.content)</code></pre>
   <category>Python Tools</category>
   <guid>https://finance-with-ai.org/posts/03-capm/</guid>
   <pubDate>Tue, 06 May 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://finance-with-ai.org/posts/03-capm/capm.png" medium="image" type="image/png" height="102" width="144"/>
+  <media:content url="https://finance-with-ai.org/posts/03-capm/capm.png" medium="image" type="image/png" height="103" width="144"/>
 </item>
 <item>
   <title>Online Data and Visualization</title>
