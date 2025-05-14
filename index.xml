@@ -14,7 +14,7 @@
 <item>
   <title>SEC EDGAR</title>
   <dc:creator>Kerry Back</dc:creator>
-  <link>https://finance-with-ai.org/posts/10-g-edgar/</link>
+  <link>https://finance-with-ai.org/posts/11-edgar/</link>
   <description><![CDATA[ 
 
 
@@ -23,11 +23,11 @@
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://finance-with-ai.org/posts/10-g-edgar/edgar.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+<p><img src="https://finance-with-ai.org/posts/11-edgar/edgar.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
 </figure>
 </div>
 <p>We can get financial statements from Yahoo Finance, but students understandably expect to get data from more professional sources. There is no source for financial statement data that is more authoritative than <a href="https://www.sec.gov/search-filings">SEC EDGAR</a>, the site to which companies upload their SEC filings. There are a number of python libraries designed to help with getting data from EDGAR, but I do not recommend them, in part because the different libraries with different syntaxes cause confusion for LLMs.</p>
-<p>A point-and-click method to find a 10-K or 10-Q is to enter a ticker at the EDGAR home page linked in the previous paragraph. That brings up a pop-up window showing the company’s CIK (Central Index Key) and the company’s name. Clicking on the company’s name brings us to a home page for SEC filings for that company. Following the links there, we can find 10-K’s or 10-Q’s that we can read in our browser. I’ll discuss web scraping in general in a future post, but, for now, I will only say that those pages are not easy for machines to read, because they are dynamically generated.</p>
+<p>A point-and-click method to find a 10-K or 10-Q is to enter a ticker at the EDGAR home page linked in the previous paragraph. That brings up a pop-up window showing the company’s CIK (Central Index Key) and the company’s name. Clicking on the company’s name brings us to a home page for SEC filings for that company. Following the links there, we can find 10-K’s or 10-Q’s that we can read in our browser. I’ll discuss web scraping in a future post, but, for now, I will only say that those pages are not easy for machines to read, because they are dynamically generated.</p>
 <p>Fortunately, there is an alternative. Reading the <a href="https://www.sec.gov/search-filings/edgar-application-programming-interfaces">EDGAR API docs</a>, we see that we can download data by going to a specific URL in a web browser. To get all financial statement data for a company, we go to https://data.sec.gov/api/xbrl/companyfacts/CIKxxxxxxxxxx.json. Here, xxxxxxxxxx should be replaced by the company’s 10-digit (zero padded) CIK, which, as already discussed, we can obtain from the EDGAR page linked above. For example, we can get Tesla’s data from <a href="https://data.sec.gov/api/xbrl/companyfacts/CIK0001318605.json">https://data.sec.gov/api/xbrl/companyfacts/CIK0001318605.json</a>.<br>
 This json file is not easy to read when opened in a browser, but it is easy for a machine to read. All we need to do is to ask Julius to go to https://data.sec.gov/api/xbrl/companyfacts/CIKxxxxxxxxxx.json and to read the json file into a pandas dataframe. We probably want to also ask it to separate the annual data from the quarterly data.</p>
 <p>While playing with this, I decided to create a Streamlit app (as discussed <a href="https://finance-with-ai.org/posts/05-apps/">here</a>) that encapsulates the process. With Julius’ help, I created <a href="https://edgar.finance-with-ai.org">edgar.finance-with-ai.org</a> that follows the steps described above to get the json file for a user-supplied ticker. It reads the json file into a pandas dataframe, separates the 10-Q’s from the 10-K’s and provides download links for Excel files containing the data. That makes it easy for students to work with the data outside of Julius and python.</p>
@@ -40,9 +40,9 @@ This json file is not easy to read when opened in a browser, but it is easy for 
 
  ]]></description>
   <category>Finance</category>
-  <guid>https://finance-with-ai.org/posts/10-g-edgar/</guid>
+  <guid>https://finance-with-ai.org/posts/11-edgar/</guid>
   <pubDate>Wed, 14 May 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://finance-with-ai.org/posts/10-g-edgar/edgar.png" medium="image" type="image/png" height="96" width="144"/>
+  <media:content url="https://finance-with-ai.org/posts/11-edgar/edgar.png" medium="image" type="image/png" height="96" width="144"/>
 </item>
 <item>
   <title>Fama-French Factors</title>
