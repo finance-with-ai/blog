@@ -150,7 +150,6 @@ print("Response:", response.choices[0].message.content)</code></pre>
         
         # Check for quit command
         if user_input.lower() == 'quit':
-            print("Oodbye-gay! 🐷")
             break
         
     # Add user message to history
