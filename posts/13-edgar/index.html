@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Kerry Back">
-<meta name="dcterms.date" content="2025-05-05">
+<meta name="dcterms.date" content="2025-05-14">
 
-<title>Online Data – Teaching Finance with AI</title>
+<title>SEC EDGAR – Teaching Finance with AI</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -289,10 +289,9 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Online Data</h1>
+<h1 class="title">SEC EDGAR</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Finance</div>
-    <div class="quarto-category">Python Tools</div>
   </div>
   </div>
 
@@ -310,7 +309,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 5, 2025</p>
+      <p class="date">May 14, 2025</p>
     </div>
   </div>
   
@@ -324,26 +323,22 @@ ul.task-list li input[type="checkbox"] {
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="online.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+<p><img src="edgar.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
 </figure>
 </div>
-<p>We can upload files to Julius as with other chatbots. We can then chat about the data with the benefit of python. In fact, Julius.ai started life as the “Chat with Your Data” plug-in for ChatGPT. However, Julius can also grab online data. Computing stock returns from <a href="https://finance.yahoo.com/">Yahoo Finance</a> data is a good place to start. The yfinance library is the best python library for accessing Yahoo Finance. The data begins in 1970. To get the longest possible history for a ticker, we can ask Julius to get data starting in 1970. We can specify other dates, and we can also specify the frequency of the data - daily, weekly, monthly, quarterly, annual.</p>
-<p>Yahoo Finance computes dividend and split adjusted closing prices. We can compute total close-to-close returns, including dividend returns, as percent changes of the adjusted closing prices.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> The yfinance library recently changed to returning the adjusted prices by default rather than returning standard (split-adjusted) prices. The confusing part is that it now calls the adjusted prices returned by default “Close” rather than the former “Adj Close.” I recommend prompting the LLM to use the latest version of yfinance and explicitly prompting the LLM to get the “Close” instead of “Adj Close.”</p>
-<p>A more complex but also more transparent solution to the Close/Adj Close confusion is to prompt the LLM to use the yfinance download function with auto_adjust set to False (this was the old behavior) and to get both the “Close” and “Adj Close.” Percent changes in “Adj Close” are what you want for returns. To show students the difference between the two, you could ask for percent changes in both and then filter to dates where the percent changes differ by more than 0.00001 or so. Those dates will be the ex-dividend days. The difference between the two percent changes on those days is the quarterly dividend yield.</p>
-<p>An additional wrinkle with yfinance is that older versions have recently been return “rate limit” errors. Ask Julius to upgrade yfinance is you encounter that.</p>
-<p><a href="https://fred.stlouisfed.org/">FRED</a> (Federal Reserve Economic Data) is a standard source for macroeconomic data, including GDP, exchange rates, Treasury and corporate bond yields, crude oil prices, etc. The pandas-datareader library is the best python library for accessing FRED. We can go to the FRED website and find the data we want, but Julius is quicker. For example, “get the history of 10-year Treasury yields from FRED using pandas-datareader at a daily frequency and plot them.” In subsequent posts, we’ll explore other online data, including Ken French’s data library and the SEC EDGAR site.</p>
+<p>We can get financial statements from Yahoo Finance, but students understandably expect to get data from more professional sources. There is no source for financial statement data that is more authoritative than <a href="https://www.sec.gov/search-filings">SEC EDGAR</a>, the site to which companies upload their SEC filings. There are a number of python libraries designed to help with getting data from EDGAR, but I do not recommend them, in part because the different libraries with different syntaxes cause confusion for LLMs.</p>
+<p>A point-and-click method to find a 10-K or 10-Q is to enter a ticker at the EDGAR home page linked in the previous paragraph. That brings up a pop-up window showing the company’s CIK (Central Index Key) and the company’s name. Clicking on the company’s name brings us to a home page for SEC filings for that company. Following the links there, we can find 10-K’s or 10-Q’s that we can read in our browser. I’ll discuss web scraping in a future post, but, for now, I will only say that those pages are not easy for machines to read, because they are dynamically generated.</p>
+<p>Fortunately, there is an alternative. Reading the <a href="https://www.sec.gov/search-filings/edgar-application-programming-interfaces">EDGAR API docs</a>, we see that we can download data by going to a specific URL in a web browser. To get all financial statement data for a company, we go to https://data.sec.gov/api/xbrl/companyfacts/CIKxxxxxxxxxx.json. Here, xxxxxxxxxx should be replaced by the company’s 10-digit (zero padded) CIK, which, as already discussed, we can obtain from the EDGAR page linked above. For example, we can get Tesla’s data from <a href="https://data.sec.gov/api/xbrl/companyfacts/CIK0001318605.json">https://data.sec.gov/api/xbrl/companyfacts/CIK0001318605.json</a>.<br>
+This json file is not easy to read when opened in a browser, but it is easy for a machine to read. All we need to do is to ask Julius to go to https://data.sec.gov/api/xbrl/companyfacts/CIKxxxxxxxxxx.json and to read the json file into a pandas dataframe. We probably want to also ask it to separate the annual data from the quarterly data.</p>
+<p>While playing with this, I decided to create a Streamlit app (as discussed <a href="https://finance-with-ai.org/posts/07-apps/">here</a>) that encapsulates the process. With Julius’ help, I created <a href="https://edgar.finance-with-ai.org">edgar.finance-with-ai.org</a> that follows the steps described above to get the json file for a user-supplied ticker. It reads the json file into a pandas dataframe, separates the 10-Q’s from the 10-K’s and provides download links for Excel files containing the data. That makes it easy for students to work with the data outside of Julius and python.</p>
+<p>This EDGAR-supplied data does not come nicely formatted. Instead, we get all of the data items that were uploaded to the SEC. In the examples I’ve looked at, there are over 400 10-K items and over 200 10-Q items. These do include the main statement components: revenue, cost of revenue, current assets, etc. It is a good exercise for finance students to try to build “pretty” statements from these data items.</p>
+<p>There is a lot of data on the SEC EDGAR site other than financial statement data. For example, we can get Form 4’s and Schedule 13-F’s there. I’ll discuss extracting other data in a future post.</p>
 <hr>
-<p><em>Also on substack at <a href="https://kerryback.substack.com">kerryback.substack.com</a></em></p>
+<p><em>First published on <a href="https://finance-with-ai.org">finance-with-ai.org</a></em> <br> <em>Also on substack at <a href="https://kerryback.substack.com">kerryback.substack.com</a></em></p>
 
 
 
-
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-
-<ol>
-<li id="fn1"><p>There is a slight caveat that the percent change of the adjusted closing price on an ex-dividend day takes the dividend out of the denominator of the price ratio rather than adding it to the numerator, but, given typical quarterly dividend yields, this has a negligible effect. Percent changes of adjusted closing prices on all days other than ex-dividend days equal percent changes in split-adjusted closing prices.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right

@@ -14,7 +14,7 @@
 <item>
   <title>SEC EDGAR</title>
   <dc:creator>Kerry Back</dc:creator>
-  <link>https://finance-with-ai.org/posts/11-edgar/</link>
+  <link>https://finance-with-ai.org/posts/13-edgar/</link>
   <description><![CDATA[ 
 
 
@@ -23,14 +23,14 @@
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://finance-with-ai.org/posts/11-edgar/edgar.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+<p><img src="https://finance-with-ai.org/posts/13-edgar/edgar.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
 </figure>
 </div>
 <p>We can get financial statements from Yahoo Finance, but students understandably expect to get data from more professional sources. There is no source for financial statement data that is more authoritative than <a href="https://www.sec.gov/search-filings">SEC EDGAR</a>, the site to which companies upload their SEC filings. There are a number of python libraries designed to help with getting data from EDGAR, but I do not recommend them, in part because the different libraries with different syntaxes cause confusion for LLMs.</p>
 <p>A point-and-click method to find a 10-K or 10-Q is to enter a ticker at the EDGAR home page linked in the previous paragraph. That brings up a pop-up window showing the company’s CIK (Central Index Key) and the company’s name. Clicking on the company’s name brings us to a home page for SEC filings for that company. Following the links there, we can find 10-K’s or 10-Q’s that we can read in our browser. I’ll discuss web scraping in a future post, but, for now, I will only say that those pages are not easy for machines to read, because they are dynamically generated.</p>
 <p>Fortunately, there is an alternative. Reading the <a href="https://www.sec.gov/search-filings/edgar-application-programming-interfaces">EDGAR API docs</a>, we see that we can download data by going to a specific URL in a web browser. To get all financial statement data for a company, we go to https://data.sec.gov/api/xbrl/companyfacts/CIKxxxxxxxxxx.json. Here, xxxxxxxxxx should be replaced by the company’s 10-digit (zero padded) CIK, which, as already discussed, we can obtain from the EDGAR page linked above. For example, we can get Tesla’s data from <a href="https://data.sec.gov/api/xbrl/companyfacts/CIK0001318605.json">https://data.sec.gov/api/xbrl/companyfacts/CIK0001318605.json</a>.<br>
 This json file is not easy to read when opened in a browser, but it is easy for a machine to read. All we need to do is to ask Julius to go to https://data.sec.gov/api/xbrl/companyfacts/CIKxxxxxxxxxx.json and to read the json file into a pandas dataframe. We probably want to also ask it to separate the annual data from the quarterly data.</p>
-<p>While playing with this, I decided to create a Streamlit app (as discussed <a href="https://finance-with-ai.org/posts/05-apps/">here</a>) that encapsulates the process. With Julius’ help, I created <a href="https://edgar.finance-with-ai.org">edgar.finance-with-ai.org</a> that follows the steps described above to get the json file for a user-supplied ticker. It reads the json file into a pandas dataframe, separates the 10-Q’s from the 10-K’s and provides download links for Excel files containing the data. That makes it easy for students to work with the data outside of Julius and python.</p>
+<p>While playing with this, I decided to create a Streamlit app (as discussed <a href="https://finance-with-ai.org/posts/07-apps/">here</a>) that encapsulates the process. With Julius’ help, I created <a href="https://edgar.finance-with-ai.org">edgar.finance-with-ai.org</a> that follows the steps described above to get the json file for a user-supplied ticker. It reads the json file into a pandas dataframe, separates the 10-Q’s from the 10-K’s and provides download links for Excel files containing the data. That makes it easy for students to work with the data outside of Julius and python.</p>
 <p>This EDGAR-supplied data does not come nicely formatted. Instead, we get all of the data items that were uploaded to the SEC. In the examples I’ve looked at, there are over 400 10-K items and over 200 10-Q items. These do include the main statement components: revenue, cost of revenue, current assets, etc. It is a good exercise for finance students to try to build “pretty” statements from these data items.</p>
 <p>There is a lot of data on the SEC EDGAR site other than financial statement data. For example, we can get Form 4’s and Schedule 13-F’s there. I’ll discuss extracting other data in a future post.</p>
 <hr>
@@ -40,14 +40,14 @@ This json file is not easy to read when opened in a browser, but it is easy for 
 
  ]]></description>
   <category>Finance</category>
-  <guid>https://finance-with-ai.org/posts/11-edgar/</guid>
+  <guid>https://finance-with-ai.org/posts/13-edgar/</guid>
   <pubDate>Wed, 14 May 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://finance-with-ai.org/posts/11-edgar/edgar.png" medium="image" type="image/png" height="96" width="144"/>
+  <media:content url="https://finance-with-ai.org/posts/13-edgar/edgar.png" medium="image" type="image/png" height="96" width="144"/>
 </item>
 <item>
   <title>Fama-French Factors</title>
   <dc:creator>Kerry Back</dc:creator>
-  <link>https://finance-with-ai.org/posts/10-fama-french/</link>
+  <link>https://finance-with-ai.org/posts/12-fama-french/</link>
   <description><![CDATA[ 
 
 
@@ -56,11 +56,11 @@ This json file is not easy to read when opened in a browser, but it is easy for 
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://finance-with-ai.org/posts/10-fama-french/factors.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+<p><img src="https://finance-with-ai.org/posts/12-fama-french/factors.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
 </figure>
 </div>
 <p>The CAPM is intuitively reasonable and is <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3994848">widely used by companies to estimate their cost of capital</a>, but it is well known to do a poor job of explaining average returns. I like to show students this <a href="https://learn-investments.rice-business.org/capm/sml-industries">interactive plot</a> of estimated betas and average returns for the Fama-French 48 industries. Hovering over the data points brings up the industry names. As students should expect, we see tobacco, alcoholic beverages, and defense among the low beta industries, and we see steel and construction among the high beta industries. However, we see very little difference between the average returns of low beta industries and high beta industries. In other words, the empirical security market line is too flat, as is well known. Other pages on the same website show the <a href="https://learn-investments.rice-business.org/factor-investing/quintiles">returns</a> of characteristic-sorted portfolios and their <a href="https://learn-investments.rice-business.org/capm/two-way-capm">CAPM alphas and t-statistics</a>, drawing on <a href="https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html">Ken French’s data library</a>.</p>
-<p>The Fama-French model is <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3994848">seldom used by companies to estimate their cost of capital</a>, but it and other factor models are often used as attribution analysis when evaluating the performance of fund managers. To conduct such an analysis, we can follow the same process as for the <a href="https://finance-with-ai.org/posts/03-capm/">CAPM regression</a> and <a href="https://finance-with-ai.org/posts/09-alpha/">Jensen’s alpha</a> but asking Julius to get the five Fama-French factors from French’s data library and to regress excess returns on the five factors. We can calculate the contribution of each factor to the average fund (or stock) return by multiplying the factor beta by the mean factor value over the sample.</p>
+<p>The Fama-French model is <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3994848">seldom used by companies to estimate their cost of capital</a>, but it and other factor models are often used as attribution analysis when evaluating the performance of fund managers. To conduct such an analysis, we can follow the same process as for the <a href="https://finance-with-ai.org/posts/04-capm/">CAPM regression</a> and <a href="https://finance-with-ai.org/posts/11-alpha/">Jensen’s alpha</a> but asking Julius to get the five Fama-French factors from French’s data library and to regress excess returns on the five factors. We can calculate the contribution of each factor to the average fund (or stock) return by multiplying the factor beta by the mean factor value over the sample.</p>
 <p>This exercise could obviously be done in a spreadsheet, but it is a different experience doing it with AI + python. With AI + python, students can get all the data themselves quickly, and it is also quick to run the regression and compute factor contributions. Because we don’t have to spend time explaining how to implement the calculations, there is more time to discuss why it could be reasonable to regard the Fama-French factors as proxies for risks that investors care about and which are consequently priced - or to discuss any other view one might have about the Fama-French model. Plus, the LLMs know about the Fama-French model, and, at least with Julius, their chatting will reinforce students’ learning.</p>
 <hr>
 <p><em>First published on <a href="https://finance-with-ai.org">finance-with-ai.org</a></em></p>
@@ -69,14 +69,14 @@ This json file is not easy to read when opened in a browser, but it is easy for 
 
  ]]></description>
   <category>Finance</category>
-  <guid>https://finance-with-ai.org/posts/10-fama-french/</guid>
+  <guid>https://finance-with-ai.org/posts/12-fama-french/</guid>
   <pubDate>Tue, 13 May 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://finance-with-ai.org/posts/10-fama-french/factors.png" medium="image" type="image/png" height="100" width="144"/>
+  <media:content url="https://finance-with-ai.org/posts/12-fama-french/factors.png" medium="image" type="image/png" height="100" width="144"/>
 </item>
 <item>
   <title>Jensen’s Alpha</title>
   <dc:creator>Kerry Back</dc:creator>
-  <link>https://finance-with-ai.org/posts/09-alpha/</link>
+  <link>https://finance-with-ai.org/posts/11-alpha/</link>
   <description><![CDATA[ 
 
 
@@ -85,7 +85,7 @@ This json file is not easy to read when opened in a browser, but it is easy for 
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://finance-with-ai.org/posts/09-alpha/alpha.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+<p><img src="https://finance-with-ai.org/posts/11-alpha/alpha.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
 </figure>
 </div>
 <p>“Alpha” in this post will mean the CAPM alpha, that is, the intercept in the CAPM regression. It was first used to measure mutual fund performance by Michael Jensen, and, when used in that context, it is called Jensen’s alpha. It is worth stressing to students that a positive alpha does not mean that an investor should move all of his or her money into the fund. A fund can have a positive alpha but have a lower Sharpe ratio than the market. In fact, a fund has a positive alpha if and only if its Sharpe ratio is larger than the market’s Sharpe ratio <em>multiplied by the correlation between the fund and the market</em>. Because correlations are less than one, the Sharpe ratio hurdle for a fund to earn positive alpha is lower than the market Sharpe ratio. An interactive figure illustrating this principle can be found <a href="https://learn-investments.rice-business.org/capm/alphas-sharpes">here</a>. An extreme example is a fund with a zero beta. Such a fund has a positive alpha if and only if its Sharpe ratio is positive, meaning that it beats the risk-free return on average.</p>
@@ -99,14 +99,14 @@ This json file is not easy to read when opened in a browser, but it is easy for 
 
  ]]></description>
   <category>Finance</category>
-  <guid>https://finance-with-ai.org/posts/09-alpha/</guid>
+  <guid>https://finance-with-ai.org/posts/11-alpha/</guid>
   <pubDate>Mon, 12 May 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://finance-with-ai.org/posts/09-alpha/alpha.png" medium="image" type="image/png" height="96" width="144"/>
+  <media:content url="https://finance-with-ai.org/posts/11-alpha/alpha.png" medium="image" type="image/png" height="96" width="144"/>
 </item>
 <item>
   <title>API Calls</title>
   <dc:creator>Kerry Back</dc:creator>
-  <link>https://finance-with-ai.org/posts/08-apis/</link>
+  <link>https://finance-with-ai.org/posts/10-apis/</link>
   <description><![CDATA[ 
 
 
@@ -115,7 +115,7 @@ This json file is not easy to read when opened in a browser, but it is easy for 
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://finance-with-ai.org/posts/08-apis/apis.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+<p><img src="https://finance-with-ai.org/posts/10-apis/apis.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
 </figure>
 </div>
 <p>This <a href="https://hbsp.harvard.edu/product/HEC382-PDF-ENG">HBS case</a>, about implementing generative AI at Deloitte Canada, is a useful tool for teaching the benefits, risks, and strategies of implementing AI in a corporate environment. Efficiency is of course the key benefit, and data security, client trust, and compliance are key concerns. The general strategy for implementation involves creating a custom channel through which all employees chat with an LLM, a channel that passes relevant corporate standards to the LLM in each chat, that allows monitoring, and that includes a guarantee of data privacy. To complement the case, I show students that they can use Julius to create a mini version of this, namely a custom chatbot that adds whatever context they want to each prompt. This can be done with a custom GPT from OpenAI, but seeing code that produces a custom chatbot makes everything more transparent.</p>
@@ -196,14 +196,14 @@ print("Response:", response.choices[0].message.content)</code></pre>
 </ol>
 </section></div> ]]></description>
   <category>AI Overview</category>
-  <guid>https://finance-with-ai.org/posts/08-apis/</guid>
+  <guid>https://finance-with-ai.org/posts/10-apis/</guid>
   <pubDate>Sun, 11 May 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://finance-with-ai.org/posts/08-apis/apis.png" medium="image" type="image/png" height="96" width="144"/>
+  <media:content url="https://finance-with-ai.org/posts/10-apis/apis.png" medium="image" type="image/png" height="96" width="144"/>
 </item>
 <item>
   <title>Mean-Variance Frontier</title>
   <dc:creator>Kerry Back</dc:creator>
-  <link>https://finance-with-ai.org/posts/07-mean-variance/</link>
+  <link>https://finance-with-ai.org/posts/09-mean-variance/</link>
   <description><![CDATA[ 
 
 
@@ -212,7 +212,7 @@ print("Response:", response.choices[0].message.content)</code></pre>
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://finance-with-ai.org/posts/07-mean-variance/mean-variance.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+<p><img src="https://finance-with-ai.org/posts/09-mean-variance/mean-variance.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
 </figure>
 </div>
 <p>Mean-variance optimization is one of those topics that has always been awkward to teach with spreadsheets. It is messy to define the portfolio variance in a spreadsheet for more than two assets, and we are forced to use Solver to find efficient portfolios or to deal with Excel’s matrix algebra functions that operate on arrays. Also, if we create an example for three assets and someone asks about four, then we have to almost entirely reengineer the spreadsheet. I don’t think we actually expect students to do mean-variance analysis in a spreadsheet after they graduate - we’re just teaching the concept (I think). But, we can now teach the concept without the clunkiness of setting it up in a spreadsheet.</p>
@@ -220,7 +220,7 @@ print("Response:", response.choices[0].message.content)</code></pre>
 <p>I take a very hand-waving approach to explain the formula. I remind students first that at the top of a hill the slope must be zero and second that the slope of a function is its derivative, so a maximum is the solution of an equation “derivative = 0.” Of course, they have all seen that at some point in their lives. I then show them (without deriving) the equations for maximizing the Sharpe ratio with three risky assets:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://finance-with-ai.org/posts/07-mean-variance/equations.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+<p><img src="https://finance-with-ai.org/posts/09-mean-variance/equations.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
 </figure>
 </div>
 <p>I explain that this system of equations is written as Sigma times w equals risk premia, explaining matrix multiplication briefly, and then say that it can be solved for w with a matrix version of “dividing by” Sigma. That seems to give enough intuition for the formula w = Sigma inverse times risk premia.</p>
@@ -235,14 +235,14 @@ print("Response:", response.choices[0].message.content)</code></pre>
 
  ]]></description>
   <category>Finance</category>
-  <guid>https://finance-with-ai.org/posts/07-mean-variance/</guid>
+  <guid>https://finance-with-ai.org/posts/09-mean-variance/</guid>
   <pubDate>Sat, 10 May 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://finance-with-ai.org/posts/07-mean-variance/mean-variance.png" medium="image" type="image/png" height="104" width="144"/>
+  <media:content url="https://finance-with-ai.org/posts/09-mean-variance/mean-variance.png" medium="image" type="image/png" height="104" width="144"/>
 </item>
 <item>
   <title>Simulation</title>
   <dc:creator>Kerry Back</dc:creator>
-  <link>https://finance-with-ai.org/posts/06-simulation/</link>
+  <link>https://finance-with-ai.org/posts/08-simulation/</link>
   <description><![CDATA[ 
 
 
@@ -251,7 +251,7 @@ print("Response:", response.choices[0].message.content)</code></pre>
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://finance-with-ai.org/posts/06-simulation/monte-carlo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+<p><img src="https://finance-with-ai.org/posts/08-simulation/monte-carlo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
 </figure>
 </div>
 <p>Simulation can be done in a spreadsheet but is better done elsewhere. An easy example of the AI + coding approach is to simulate a retirement plan.</p>
@@ -267,14 +267,14 @@ print("Response:", response.choices[0].message.content)</code></pre>
 
  ]]></description>
   <category>Finance</category>
-  <guid>https://finance-with-ai.org/posts/06-simulation/</guid>
+  <guid>https://finance-with-ai.org/posts/08-simulation/</guid>
   <pubDate>Fri, 09 May 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://finance-with-ai.org/posts/06-simulation/monte-carlo.png" medium="image" type="image/png" height="96" width="144"/>
+  <media:content url="https://finance-with-ai.org/posts/08-simulation/monte-carlo.png" medium="image" type="image/png" height="96" width="144"/>
 </item>
 <item>
   <title>Creating Apps</title>
   <dc:creator>Kerry Back</dc:creator>
-  <link>https://finance-with-ai.org/posts/05-apps/</link>
+  <link>https://finance-with-ai.org/posts/07-apps/</link>
   <description><![CDATA[ 
 
 
@@ -283,14 +283,15 @@ print("Response:", response.choices[0].message.content)</code></pre>
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://finance-with-ai.org/posts/05-apps/apps.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+<p><img src="https://finance-with-ai.org/posts/07-apps/apps.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
 </figure>
 </div>
 <p>After the last session of my class in the spring, a student came up to me and said “I want to thank you. I never knew anything about programming, and now I can create apps. It’s amazing!” We have a few years, I think, when we can be the first to show students the power of AI + coding and have these rewarding moments. But soon everyone will know, and I’m not sure what we’ll do then. Maybe <a href="https://www.chronicle.com/article/are-you-ready-for-the-ai-university">AI will teach our courses</a>.</p>
 <p>A significant upside to app creation is that it makes the code permanent. Using AI + python to do a task repeatedly runs into the issue that there is some randomness in LLM code generation. The code will not be exactly the same each time. Given that it is important to verify that the code is correct (for example, by running it on small examples), this poses a problem. Putting working code in an app avoids this problem. It also makes the process of using the code simpler - there is no need to write a prompt each time.</p>
+<p>Another important feature of app creation is that it enables us to ensure data privacy. By creating an app that is run locally, we can avoid ever exposing our data. We can use a small artificial dataset when creating the app, and then we can run the app on the real data on our own computer, even if it were disconnected from the internet.</p>
 <p>The streamlit, gradio, and dash libraries allow us to create web apps using only python code. The libraries provide python wrappers around HTML, CSS, and JavaScript. AI allows us to create web apps using those libraries just by prompting, because LLMs know the streamlit, gradio, and dash syntax. There are other tools (like <a href="https://replit.com/">Replit</a>) that directly take user prompts and write HTML, CSS, and JavaScript as well as python. I show students Replit but stick primarily with Julius and streamlit or gradio.</p>
 <p>I got some experience in creating apps when my colleague <a href="https://kevin-crotty.com/">Kevin Crotty</a> and I built an interactive app to illustrate financial concepts: <a href="learn-investments.rice-business.org">Learn Investments @ Rice Business</a>. It wasn’t long after finishing it that I realized that pretty much everything we had painstakingly constructed (with the great help of the dash and plotly libraries) could be generated by AI + coding with very little effort. Oh, well. At least I still have my day job.</p>
-<p>To illustrate app creation for students, I return to the cost of equity calculation and ask Julius to create a streamlit (or gradio, which is very similar) app that allows the user to input a ticker, computes the cost of equity as before, and creates and downloads the PowerPoint deck as before.</p>
+<p>To illustrate app creation for students, I return to the <a href="https://finance-with-ai.org/posts/04-capm">cost of equity</a> calculation and ask Julius to create a streamlit (or gradio, which is very similar) app that allows the user to input a ticker, computes the cost of equity as before, and creates and downloads the <a href="https://finance-with-ai.org/posts/05-building">PowerPoint deck</a> as before.</p>
 <p>Creating this app is a multi-step process. As discussed in a <a href="https://finance-with-ai.org/posts/04-prompts/">previous post</a>, a safe way to do this is to ask for a python function to be created at each step and saved as a .py file. For example, (i) a function that takes a user-supplied ticker, estimates the beta and returns the beta and a regression plot, (ii) a function that takes a beta and returns a dictionary with the risk-free rate, beta, market risk premium, and cost of equity as the keys and the calculated values as the values, and (iii) a function that takes the regression plot and dictionary as inputs and returns a PowerPoint deck. As step (iv), we can ask Julius to put these together to create an app that allows the user to input a ticker and downloads the PowerPoint deck.</p>
 <p>Unfortunately, as of this writing, Julius cannot directly run the streamlit app. It is necessary to ask for an app.py file, download the app.py file, and run it on your own computer. To do this, you need python installed on your computer. I’m hopeful that the Julius developers will soon make this simpler. In the meantime, you can ask Julius how to install python, and you can ask Julius how to run the app on your own computer. I spend time in class walking students through the process (I also recorded some videos explaining the process, but I’m doubtful anyone ever looked at them!).</p>
 <p>Once the app is running on your computer, there is an option to deploy it in the cloud. The easiest options are the free <a href="https://streamlit.io/cloud">Streamlit Community Cloud</a> for streamlit and the free <a href="https://huggingface.co/spaces">Hugging Face Spaces</a> for gradio. However, this also takes a couple of steps (for example, creating a github repo), so I’ve done the deployment for students myself when they want it. Several students wanted to deploy their course projects to show to prospective employers. Free deployment on either Streamlit or Hugging Face has the downside that the app is “put to sleep” after a couple of days of inactivity and has to be manually restarted. For permanent deployment, I deploy to <a href="https://www.koyeb.com/docs/deploy/streamlit">Koyeb</a> though there are other similar services. Here is the <a href="https://costofequity.koyeb.app/">cost of equity app</a> on Koyeb, the <a href="https://github.com/finance-with-ai/streamlit-cost-equity">github repo</a> it was deployed from, and the <a href="https://julius.ai/s/9ac52a0d-669c-47b0-a4f0-40d370e3ad35">Julius thread</a> that created it.</p>
@@ -303,14 +304,14 @@ print("Response:", response.choices[0].message.content)</code></pre>
 
  ]]></description>
   <category>Python Tools</category>
-  <guid>https://finance-with-ai.org/posts/05-apps/</guid>
+  <guid>https://finance-with-ai.org/posts/07-apps/</guid>
   <pubDate>Thu, 08 May 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://finance-with-ai.org/posts/05-apps/apps.png" medium="image" type="image/png" height="144" width="144"/>
+  <media:content url="https://finance-with-ai.org/posts/07-apps/apps.png" medium="image" type="image/png" height="144" width="144"/>
 </item>
 <item>
-  <title>Prompt Engineering (or Not)</title>
+  <title>Building Stuff</title>
   <dc:creator>Kerry Back</dc:creator>
-  <link>https://finance-with-ai.org/posts/04-prompts/</link>
+  <link>https://finance-with-ai.org/posts/05-building/</link>
   <description><![CDATA[ 
 
 
@@ -319,7 +320,39 @@ print("Response:", response.choices[0].message.content)</code></pre>
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://finance-with-ai.org/posts/04-prompts/prompts.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+<p><img src="https://finance-with-ai.org/posts/05-building/building.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+</figure>
+</div>
+<p>A big advantage of coding (and using AI to write code) is that things can be automated. A student this spring told me that a friend of his in the finance industry had just used AI to reduce the time required for a certain task he often had to do from two days to two hours. There are many stories like that. To illustrate automation in a simple setting, we can use the <a href="https://finance-with-ai.org/posts/04-capm">CAPM calculation</a> to show how PowerPoint decks can be created with AI + python.</p>
+<p>PowerPoint decks can be created in python with the python-pptx library. The details are not important, because the LLMs know them. I ask Julius to create a PowerPoint deck with two slides, the first being a scatterplot representing the regression, and the second being a table showing the cost of equity calculation. Usually, it delivers a nice looking deck without any further prompting, but you may want to fine tune it in an iterative way. It will probably use the seaborn regplot function to produce the scatterplot with the regression line. Sometimes it will show a confidence interval band around the regression line representing the standard errors in the coefficient estimates. When this happens, I ask Julius to remove it, but you may have a different preference.</p>
+<p>We can also create Word docs. It is interesting to ask for the same plot and table and for some discussion of the results to be saved as a Word doc. Python can create Excel files, with multiple worksheets, but it can only produce tables of data. It does not write Excel formulas into a workbook. There are other AI tools for working with Excel files, but they are not the subject of today’s post.</p>
+<p>To truly automate the creation of the PowerPoint deck or Word doc, we can embed the code in an app that runs on our computer or in the cloud. That will be the subject of a later post.</p>
+<p>If you try this, let us know how it goes in the comments below.</p>
+<hr>
+<p><em>Also on substack at <a href="https://kerryback.substack.com">kerryback.substack.com</a></em></p>
+
+
+
+ ]]></description>
+  <category>Finance</category>
+  <category>Python Tools</category>
+  <guid>https://finance-with-ai.org/posts/05-building/</guid>
+  <pubDate>Wed, 07 May 2025 00:00:00 GMT</pubDate>
+  <media:content url="https://finance-with-ai.org/posts/05-building/building.png" medium="image" type="image/png" height="96" width="144"/>
+</item>
+<item>
+  <title>Prompt Engineering (or Not)</title>
+  <dc:creator>Kerry Back</dc:creator>
+  <link>https://finance-with-ai.org/posts/06-prompts/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://finance-with-ai.org/posts/06-prompts/prompts.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
 </figure>
 </div>
 <p>I use <a href="https://mentimeter.com/">Menti</a> surveys periodically to ask students what they would like to learn more about, and how to write effective prompts frequently shows up. In the first bit of time after ChatGPT 3.5 was introduced, there was a lot of chatter online about prompt engineering. This seems to have died down somewhat, and for good reason. The models are so good now that they don’t generally require any special prompting. In particular, you do not need to tell Julius “you are an expert coder …” If any role-setting is even needed now, which is doubtful, I think it must be supplied in the context provided by Julius to the LLMs.</p>
@@ -335,14 +368,14 @@ print("Response:", response.choices[0].message.content)</code></pre>
 
  ]]></description>
   <category>AI Overview</category>
-  <guid>https://finance-with-ai.org/posts/04-prompts/</guid>
+  <guid>https://finance-with-ai.org/posts/06-prompts/</guid>
   <pubDate>Wed, 07 May 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://finance-with-ai.org/posts/04-prompts/prompts.png" medium="image" type="image/png" height="96" width="144"/>
+  <media:content url="https://finance-with-ai.org/posts/06-prompts/prompts.png" medium="image" type="image/png" height="96" width="144"/>
 </item>
 <item>
-  <title>CAPM and PowerPoint</title>
+  <title>CAPM</title>
   <dc:creator>Kerry Back</dc:creator>
-  <link>https://finance-with-ai.org/posts/03-capm/</link>
+  <link>https://finance-with-ai.org/posts/04-capm/</link>
   <description><![CDATA[ 
 
 
@@ -351,17 +384,14 @@ print("Response:", response.choices[0].message.content)</code></pre>
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://finance-with-ai.org/posts/03-capm/capm.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+<p><img src="https://finance-with-ai.org/posts/04-capm/capm.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
 </figure>
 </div>
 <p>Calculating betas is an easy exercise to do with Julius. We can also estimate the market risk premium, and we can get the risk-free rate from FRED, so we can estimate the cost of equity capital according to the CAPM. This exercise provides the opportunity to explore <a href="https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html">Ken French’s data library</a> while getting market excess returns and risk-free rates.</p>
-<p>A big advantage of using AI is that things can be automated. A student this spring told me that a friend of his in the finance industry had just used AI to reduce the time required for a certain task he often had to do from two days to two hours. There are many stories like that. To illustrate automation in a simple setting, I use the CAPM calculation to show how PowerPoint decks can be created with AI + python. In a future post, I will explain how to use AI + python to build a web app that estimates a beta, calculates the cost of equity, and generates a PowerPoint deck - the user only has to input a ticker. And, the builder of the app only has to chat with Julius.</p>
 <p>To estimate betas, we need stock excess returns and market excess returns. I follow the usual academic convention of monthly returns over a 5-year period. To get monthly stock returns we can use yfinance (see <a href="https://finance-with-ai.org/posts/02-online-data/">Online Data and Visualization</a>). To get adjusted closing prices at a monthly frequency, simply ask Julius for them (the LLM will either use period=“1mo” in yf.download or it will use the pandas resample method to downsample daily prices to monthly prices). Ask for a bit more than five years, because we may lose some months when merging with the market data. Then compute returns as percent changes.</p>
 <p>To get market excess returns and the risk-free rate, we can use French’s data library. It’s interesting to start by asking Julius to list the datasets available in French’s data library. Then ask Julius to get the monthly three factors using pandas-datareader starting in 1926 and to compute the mean of Mkt-RF for the market risk premium estimate. You’ll want to annualize the market risk premium estimate (or you could just ask for the annual factors and the mean of annual Mkt-RF). If you don’t explicitly ask for pandas-datareader to be used, the LLM may write code to directly read the csv files on French’s website into pandas dataframes, which doesn’t work well, because each file contains text and contains multiple tables (monthly, annual, etc.).</p>
 <p>To estimate betas, we want to first do an inner merge of the Fama-French data with the stock return data. There are two issues. First, the stock return data will be in decimals and the Fama-French data is in percents. The LLM will probably notice that, but it is good to explicitly ask to convert the stock returns to percents or the Fama-French data to decimals (your choice). The second issue is that the dates will be in different formats. Pandas-datareader will return the Fama-French dates in what is called the pandas period format, whereas the stock return format will be in the pandas timestamp format. Julius will figure this out also, but it may speed up the merge to warn it that the date formats will need to be reconciled. Once the data is merged, keep the last 60 months for which there are no missing data, calculate excess stock returns by subtracting RF (which is in the Fama-French three factor dataset), and then ask Julius to run the regression.</p>
 <p>Once the beta is estimated, the final step is to get the current risk-free rate. I ask Julius to get the latest value of the three-month T-bill yield from FRED, but it can get different rates if you prefer something else. At this point, you can just ask Julius to compute the cost of equity. The LLMs know the CAPM formula.</p>
-<p>PowerPoint decks can be created in python with the python-pptx library. The details are not important, because the LLMs know them. I like to ask Julius to create a PowerPoint deck with two slides, the first being a scatterplot representing the regression, and the second being a table showing the cost of equity calculation. Usually, it delivers a nice looking deck without any further prompting, but you may want to fine tune it in an iterative way. It will probably use the seaborn regplot function to produce the scatterplot with the regression line. Sometimes it will show a confidence interval band around the regression line representing the standard errors in the coefficient estimates. When this happens, I ask Julius to remove it, but you may have a different preference.</p>
-<p>If you try this, let us know how it goes in the comments below.</p>
 <hr>
 <p><em>Also on substack at <a href="https://kerryback.substack.com">kerryback.substack.com</a></em></p>
 
@@ -370,9 +400,9 @@ print("Response:", response.choices[0].message.content)</code></pre>
  ]]></description>
   <category>Finance</category>
   <category>Python Tools</category>
-  <guid>https://finance-with-ai.org/posts/03-capm/</guid>
+  <guid>https://finance-with-ai.org/posts/04-capm/</guid>
   <pubDate>Tue, 06 May 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://finance-with-ai.org/posts/03-capm/capm.png" medium="image" type="image/png" height="103" width="144"/>
+  <media:content url="https://finance-with-ai.org/posts/04-capm/capm.png" medium="image" type="image/png" height="103" width="144"/>
 </item>
 <item>
   <title>Online Data</title>
@@ -392,6 +422,7 @@ print("Response:", response.choices[0].message.content)</code></pre>
 <p>We can upload files to Julius as with other chatbots. We can then chat about the data with the benefit of python. In fact, Julius.ai started life as the “Chat with Your Data” plug-in for ChatGPT. However, Julius can also grab online data. Computing stock returns from <a href="https://finance.yahoo.com/">Yahoo Finance</a> data is a good place to start. The yfinance library is the best python library for accessing Yahoo Finance. The data begins in 1970. To get the longest possible history for a ticker, we can ask Julius to get data starting in 1970. We can specify other dates, and we can also specify the frequency of the data - daily, weekly, monthly, quarterly, annual.</p>
 <p>Yahoo Finance computes dividend and split adjusted closing prices. We can compute total close-to-close returns, including dividend returns, as percent changes of the adjusted closing prices.<sup>1</sup> The yfinance library recently changed to returning the adjusted prices by default rather than returning standard (split-adjusted) prices. The confusing part is that it now calls the adjusted prices returned by default “Close” rather than the former “Adj Close.” I recommend prompting the LLM to use the latest version of yfinance and explicitly prompting the LLM to get the “Close” instead of “Adj Close.”</p>
 <p>A more complex but also more transparent solution to the Close/Adj Close confusion is to prompt the LLM to use the yfinance download function with auto_adjust set to False (this was the old behavior) and to get both the “Close” and “Adj Close.” Percent changes in “Adj Close” are what you want for returns. To show students the difference between the two, you could ask for percent changes in both and then filter to dates where the percent changes differ by more than 0.00001 or so. Those dates will be the ex-dividend days. The difference between the two percent changes on those days is the quarterly dividend yield.</p>
+<p>An additional wrinkle with yfinance is that older versions have recently been return “rate limit” errors. Ask Julius to upgrade yfinance is you encounter that.</p>
 <p><a href="https://fred.stlouisfed.org/">FRED</a> (Federal Reserve Economic Data) is a standard source for macroeconomic data, including GDP, exchange rates, Treasury and corporate bond yields, crude oil prices, etc. The pandas-datareader library is the best python library for accessing FRED. We can go to the FRED website and find the data we want, but Julius is quicker. For example, “get the history of 10-year Treasury yields from FRED using pandas-datareader at a daily frequency and plot them.” In subsequent posts, we’ll explore other online data, including Ken French’s data library and the SEC EDGAR site.</p>
 <hr>
 <p><em>Also on substack at <a href="https://kerryback.substack.com">kerryback.substack.com</a></em></p>
@@ -414,7 +445,7 @@ print("Response:", response.choices[0].message.content)</code></pre>
 <item>
   <title>Data Visualization</title>
   <dc:creator>Kerry Back</dc:creator>
-  <link>https://finance-with-ai.org/posts/02-visualize/</link>
+  <link>https://finance-with-ai.org/posts/03-visualize/</link>
   <description><![CDATA[ 
 
 
@@ -423,7 +454,7 @@ print("Response:", response.choices[0].message.content)</code></pre>
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://finance-with-ai.org/posts/02-visualize/visualize.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+<p><img src="https://finance-with-ai.org/posts/03-visualize/visualize.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
 </figure>
 </div>
 <p>Python has very versatile plotting libraries. The primary libraries are matplotlib and seaborn, but there are others - for example, plotly and other libraries create interactive html plots. All of the standard plot types are available. For ideas, see <a href="https://matplotlib.org/stable/gallery/">here</a> for matplotlib examples and <a href="https://seaborn.pydata.org/examples/index.html">here</a> for seaborn. We can ask Julius to adjust the figure size, font sizes, tick locations, tick labels, axis labels, title, legend positioning, and more. Figures can be saved and downloaded as jpegs, pngs, pdfs, or other types. Different themes can also be applied – gridded or not gridded, light or dark background, legend or no legend, etc. We can put multiple plots in the same figure, and they can share a legend if it is appropriate. We can add annotations within plots. I recommend encouraging students to ask Julius what is possible.</p>
@@ -435,9 +466,9 @@ print("Response:", response.choices[0].message.content)</code></pre>
 
  ]]></description>
   <category>Python Tools</category>
-  <guid>https://finance-with-ai.org/posts/02-visualize/</guid>
+  <guid>https://finance-with-ai.org/posts/03-visualize/</guid>
   <pubDate>Mon, 05 May 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://finance-with-ai.org/posts/02-visualize/visualize.png" medium="image" type="image/png" height="96" width="144"/>
+  <media:content url="https://finance-with-ai.org/posts/03-visualize/visualize.png" medium="image" type="image/png" height="96" width="144"/>
 </item>
 <item>
   <title>Julius and the Democratization of Coding</title>

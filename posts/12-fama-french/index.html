@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Kerry Back">
-<meta name="dcterms.date" content="2025-05-14">
+<meta name="dcterms.date" content="2025-05-13">
 
-<title>SEC EDGAR – Teaching Finance with AI</title>
+<title>Fama-French Factors – Teaching Finance with AI</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -289,7 +289,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">SEC EDGAR</h1>
+<h1 class="title">Fama-French Factors</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Finance</div>
   </div>
@@ -309,7 +309,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 14, 2025</p>
+      <p class="date">May 13, 2025</p>
     </div>
   </div>
   
@@ -323,18 +323,14 @@ ul.task-list li input[type="checkbox"] {
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="edgar.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+<p><img src="factors.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
 </figure>
 </div>
-<p>We can get financial statements from Yahoo Finance, but students understandably expect to get data from more professional sources. There is no source for financial statement data that is more authoritative than <a href="https://www.sec.gov/search-filings">SEC EDGAR</a>, the site to which companies upload their SEC filings. There are a number of python libraries designed to help with getting data from EDGAR, but I do not recommend them, in part because the different libraries with different syntaxes cause confusion for LLMs.</p>
-<p>A point-and-click method to find a 10-K or 10-Q is to enter a ticker at the EDGAR home page linked in the previous paragraph. That brings up a pop-up window showing the company’s CIK (Central Index Key) and the company’s name. Clicking on the company’s name brings us to a home page for SEC filings for that company. Following the links there, we can find 10-K’s or 10-Q’s that we can read in our browser. I’ll discuss web scraping in a future post, but, for now, I will only say that those pages are not easy for machines to read, because they are dynamically generated.</p>
-<p>Fortunately, there is an alternative. Reading the <a href="https://www.sec.gov/search-filings/edgar-application-programming-interfaces">EDGAR API docs</a>, we see that we can download data by going to a specific URL in a web browser. To get all financial statement data for a company, we go to https://data.sec.gov/api/xbrl/companyfacts/CIKxxxxxxxxxx.json. Here, xxxxxxxxxx should be replaced by the company’s 10-digit (zero padded) CIK, which, as already discussed, we can obtain from the EDGAR page linked above. For example, we can get Tesla’s data from <a href="https://data.sec.gov/api/xbrl/companyfacts/CIK0001318605.json">https://data.sec.gov/api/xbrl/companyfacts/CIK0001318605.json</a>.<br>
-This json file is not easy to read when opened in a browser, but it is easy for a machine to read. All we need to do is to ask Julius to go to https://data.sec.gov/api/xbrl/companyfacts/CIKxxxxxxxxxx.json and to read the json file into a pandas dataframe. We probably want to also ask it to separate the annual data from the quarterly data.</p>
-<p>While playing with this, I decided to create a Streamlit app (as discussed <a href="https://finance-with-ai.org/posts/05-apps/">here</a>) that encapsulates the process. With Julius’ help, I created <a href="https://edgar.finance-with-ai.org">edgar.finance-with-ai.org</a> that follows the steps described above to get the json file for a user-supplied ticker. It reads the json file into a pandas dataframe, separates the 10-Q’s from the 10-K’s and provides download links for Excel files containing the data. That makes it easy for students to work with the data outside of Julius and python.</p>
-<p>This EDGAR-supplied data does not come nicely formatted. Instead, we get all of the data items that were uploaded to the SEC. In the examples I’ve looked at, there are over 400 10-K items and over 200 10-Q items. These do include the main statement components: revenue, cost of revenue, current assets, etc. It is a good exercise for finance students to try to build “pretty” statements from these data items.</p>
-<p>There is a lot of data on the SEC EDGAR site other than financial statement data. For example, we can get Form 4’s and Schedule 13-F’s there. I’ll discuss extracting other data in a future post.</p>
+<p>The CAPM is intuitively reasonable and is <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3994848">widely used by companies to estimate their cost of capital</a>, but it is well known to do a poor job of explaining average returns. I like to show students this <a href="https://learn-investments.rice-business.org/capm/sml-industries">interactive plot</a> of estimated betas and average returns for the Fama-French 48 industries. Hovering over the data points brings up the industry names. As students should expect, we see tobacco, alcoholic beverages, and defense among the low beta industries, and we see steel and construction among the high beta industries. However, we see very little difference between the average returns of low beta industries and high beta industries. In other words, the empirical security market line is too flat, as is well known. Other pages on the same website show the <a href="https://learn-investments.rice-business.org/factor-investing/quintiles">returns</a> of characteristic-sorted portfolios and their <a href="https://learn-investments.rice-business.org/capm/two-way-capm">CAPM alphas and t-statistics</a>, drawing on <a href="https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html">Ken French’s data library</a>.</p>
+<p>The Fama-French model is <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3994848">seldom used by companies to estimate their cost of capital</a>, but it and other factor models are often used as attribution analysis when evaluating the performance of fund managers. To conduct such an analysis, we can follow the same process as for the <a href="https://finance-with-ai.org/posts/04-capm/">CAPM regression</a> and <a href="https://finance-with-ai.org/posts/11-alpha/">Jensen’s alpha</a> but asking Julius to get the five Fama-French factors from French’s data library and to regress excess returns on the five factors. We can calculate the contribution of each factor to the average fund (or stock) return by multiplying the factor beta by the mean factor value over the sample.</p>
+<p>This exercise could obviously be done in a spreadsheet, but it is a different experience doing it with AI + python. With AI + python, students can get all the data themselves quickly, and it is also quick to run the regression and compute factor contributions. Because we don’t have to spend time explaining how to implement the calculations, there is more time to discuss why it could be reasonable to regard the Fama-French factors as proxies for risks that investors care about and which are consequently priced - or to discuss any other view one might have about the Fama-French model. Plus, the LLMs know about the Fama-French model, and, at least with Julius, their chatting will reinforce students’ learning.</p>
 <hr>
-<p><em>First published on <a href="https://finance-with-ai.org">finance-with-ai.org</a></em> <br> <em>Also on substack at <a href="https://kerryback.substack.com">kerryback.substack.com</a></em></p>
+<p><em>First published on <a href="https://finance-with-ai.org">finance-with-ai.org</a></em></p>
 
 
 
