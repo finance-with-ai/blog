@@ -343,7 +343,8 @@ client = OpenAI(api_key=os.environ.get('OPENAI_API_KEY'))
 response = client.chat.completions.create(
     model="gpt-4",
     messages=[
-        {"role": "user", "content": "What is the best type of pizza?  Answer in pig Latin."}
+        {"role": "user", "content": "What is the best type of pizza?  \
+        Answer in pig Latin."}
     ]
 )
 
@@ -353,7 +354,8 @@ print("Response:", response.choices[0].message.content)</code></pre>
 <p>To create a custom chatbot, it is enough to say something like “Create a custom chatbot as a streamlit app. It should send prompts to GPT-4 using my openai api key that is stored as a secret key. The following additional context should be provided: You are a business professional. Answer in a business-like fashion.” Of course, you could also do more interesting things, like requesting an answer in Pig Latin perhaps. The heart of the code that Claude 3.5 wrote for me is</p>
 <pre><code>messages = [
         {"role": "system", "content": 
-        "You are a business professional.  Answer in a business-like fashion."}
+        "You are a business professional.  \
+        Answer in a business-like fashion."}
     ]
     
     while True:
