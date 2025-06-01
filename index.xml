@@ -71,7 +71,7 @@
 <p>The second example I show students is getting short interest data from FINRA. FINRA has an <a href="https://www.finra.org/sites/default/files/Equity_Short_Interest_Data_File_Download_API.pdf">API</a>, but there is a solution that is easier for students to follow and that generalizes to other contexts. The page <a href="https://www.finra.org/finra-data/browse-catalog/equity-short-interest/files">https://www.finra.org/finra-data/browse-catalog/equity-short-interest/files</a> provides a point-and-click interface to download the data for all stocks on a single reporting date. There are two reporting dates each month. Links to both dates are shown for the month selected in the dropdown menu. Clicking a date initiates a download of a csv file containing the data for that date. The filename convention is very simple - for example, the link for April 30, 2025 initiates the download of a file named “shrt20250430.csv.” What is the full URL of that file? If we find it, then we can go to it directly to get the data and avoid the point-and-click.</p>
 <p>I’ll use an example of the FINRA download page when April, 2025 is selected from the dropdown menu, but other cases follow the same format. Right-click on the page and select “View page source” as discussed before. Use CTRL-F to bring up the search box and insert “20250430.” That brings us to the URL for the shrt20250430.csv file. We see that the URL is <a href="https://cdn.finra.org/equity/otcmarket/biweekly/shrt20250430.csv">https://cdn.finra.org/equity/otcmarket/biweekly/shrt20250430.csv</a>. Inserting that URL in the address bar of a browser initiates the download of the file.<sup>1</sup></p>
 <p>Our goal is to automate the downloading of these files by looping over dates. The reporting days appear to be the 15th and last day of each month or the last trading days prior to those days. Instead of finding those days, we can ask Julius to try every possible day in a try-except block.<sup>2</sup> We can ask Julius to loop over all dates in a given date range, inserting the date in YYYYMMDD format into the URL above and using try-except blocks, to download and concatenate the files, and to save the complete data as a csv file.<sup>3</sup></p>
-<p>Unfortunately, web scraping is often not this easy, because many pages are dynamically generated using JavaScript. This means that the data we want is not part of the source code that we (and python) can see with “View page source” but instead is retrieved from elsewhere by executing the JavaScript code that appears along with HTML code in the source code. A good example is <a href="https://www.sec.gov/ix?doc=/Archives/edgar/data/1318605/000110465925042659/tm252787d2_10ka.htm">this page</a> that can be found by following links to the 10-K filed by Tesla with the SEC on April 30, 2025 as described in a <a href="https://finance-with-ai.org/posts/13-edgar/">previous post</a>. The first table on that page is a listing of the directors of Tesla. If we open the source code with “View page source” and use CTRL-F to search for “Elon Musk,” we will get “0 results.” This is despite the fact that Musk appears in the table as a director. The reason is that the entire web page is filled by the JavaScript code having the ‘script language=“JavaScript”’ tag.</p>
+<p>Unfortunately, web scraping is often not this easy, because many pages are dynamically generated using JavaScript. This means that the data we want is not part of the source code that we (and python) can see with “View page source” but instead is retrieved from elsewhere by executing the JavaScript code that appears along with HTML code in the source code. A good example is <a href="https://www.sec.gov/ix?doc=/Archives/edgar/data/1318605/000110465925042659/tm252787d2_10ka.htm">this page</a> that can be found by following links on the <a href="https://www.sec.gov/search-filings">SEC EDGAR</a> website to the 10-K filed by Tesla with the SEC on April 30, 2025. The first table on that page is a listing of the directors of Tesla. If we open the source code with “View page source” and use CTRL-F to search for “Elon Musk,” we will get “0 results.” This is despite the fact that Musk appears in the table as a director. The reason is that the entire web page is filled by the JavaScript code having the ‘script language=“JavaScript”’ tag.</p>
 <p>There are python tools for executing the JavaScript code and retrieving the data, in particular the selenium library, but I have never had the patience to complete that type of task.<sup>4</sup> Perhaps AI agents using Anthropic’s <a href="https://www.anthropic.com/news/model-context-protocol">Model Context Protocol (MCP)</a> to control a web browser are the best tool for that type of exercise now. More on that later.</p>
 <hr>
 <p><em>First published on <a href="https://finance-with-ai.org">finance-with-ai.org</a></em> <br> <em>Also on substack at <a href="https://kerryback.substack.com">kerryback.substack.com</a></em></p>
@@ -92,39 +92,6 @@
   <guid>https://finance-with-ai.org/posts/18-scraping/</guid>
   <pubDate>Mon, 19 May 2025 00:00:00 GMT</pubDate>
   <media:content url="https://finance-with-ai.org/posts/18-scraping/scraping.png" medium="image" type="image/png" height="96" width="144"/>
-</item>
-<item>
-  <title>SEC EDGAR</title>
-  <dc:creator>Kerry Back</dc:creator>
-  <link>https://finance-with-ai.org/posts/13-edgar/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://finance-with-ai.org/posts/13-edgar/edgar.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
-</figure>
-</div>
-<p>We can get financial statements from Yahoo Finance, but students understandably expect to get data from more professional sources. There is no source for financial statement data that is more authoritative than <a href="https://www.sec.gov/search-filings">SEC EDGAR</a>, the site to which companies upload their SEC filings. There are a number of python libraries designed to help with getting data from EDGAR, but I do not recommend them, in part because the different libraries with different syntaxes cause confusion for LLMs.</p>
-<p>A point-and-click method to find a 10-K or 10-Q is to enter a ticker at the EDGAR home page linked in the previous paragraph. That brings up a pop-up window showing the company’s CIK (Central Index Key) and the company’s name. Clicking on the company’s name brings us to a home page for SEC filings for that company. Following the links there, we can find 10-K’s or 10-Q’s that we can read in our browser. I’ll discuss web scraping in a future post, but, for now, I will only say that those pages are not easy for machines to read, because they are dynamically generated.</p>
-<p>Fortunately, there is an alternative. Reading the <a href="https://www.sec.gov/search-filings/edgar-application-programming-interfaces">EDGAR API docs</a>, we see that we can download data by going to a specific URL in a web browser. To get all financial statement data for a company, we go to https://data.sec.gov/api/xbrl/companyfacts/CIKxxxxxxxxxx.json. Here, xxxxxxxxxx should be replaced by the company’s 10-digit (zero padded) CIK, which, as already discussed, we can obtain from the EDGAR page linked above. For example, we can get Tesla’s data from <a href="https://data.sec.gov/api/xbrl/companyfacts/CIK0001318605.json">https://data.sec.gov/api/xbrl/companyfacts/CIK0001318605.json</a>.<br>
-This json file is not easy to read when opened in a browser, but it is easy for a machine to read. All we need to do is to ask Julius to go to https://data.sec.gov/api/xbrl/companyfacts/CIKxxxxxxxxxx.json and to read the json file into a pandas dataframe. We probably want to also ask it to separate the annual data from the quarterly data.</p>
-<p>While playing with this, I decided to create a Streamlit app (as discussed <a href="https://finance-with-ai.org/posts/07-apps/">here</a>) that encapsulates the process. With Julius’ help, I created <a href="https://edgar.finance-with-ai.org">edgar.finance-with-ai.org</a> that follows the steps described above to get the json file for a user-supplied ticker. It reads the json file into a pandas dataframe, separates the 10-Q’s from the 10-K’s and provides download links for Excel files containing the data. That makes it easy for students to work with the data outside of Julius and python.</p>
-<p>This EDGAR-supplied data does not come nicely formatted. Instead, we get all of the data items that were uploaded to the SEC. In the examples I’ve looked at, there are over 400 10-K items and over 200 10-Q items. These do include the main statement components: revenue, cost of revenue, current assets, etc. It is a good exercise for finance students to try to build “pretty” statements from these data items.</p>
-<p>There is a lot of data on the SEC EDGAR site other than financial statement data. For example, we can get Form 4’s and Schedule 13-F’s there. I’ll discuss extracting other data in a future post.</p>
-<hr>
-<p><em>First published on <a href="https://finance-with-ai.org">finance-with-ai.org</a></em> <br> <em>Also on substack at <a href="https://kerryback.substack.com">kerryback.substack.com</a></em></p>
-
-
-
- ]]></description>
-  <category>Finance</category>
-  <guid>https://finance-with-ai.org/posts/13-edgar/</guid>
-  <pubDate>Wed, 14 May 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://finance-with-ai.org/posts/13-edgar/edgar.png" medium="image" type="image/png" height="96" width="144"/>
 </item>
 <item>
   <title>Fama-French Factors</title>
