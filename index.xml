@@ -477,12 +477,11 @@ print("Response:", response.choices[0].message.content)</code></pre>
 <li>Copy the Dropbox link to the csv file. Change the last symbol of the URL from 0 to 1 (dl = 0 at the end of the URL means “direct link = False;” dl = 1 means “direct link = True”, which is what we want). Share the revised URL with students.</li>
 <li>Tell students to ask Julius to install the python library duckdb and to read only the part of the data they want from the csv file at the URL. For example, they can say “use duckdb to read only the WMT returns.”</li>
 </ol>
-<section id="duckdb-uses-sql-syntax-to-read-the-file.-we-get-the-convenience-of-sql-you-dont-need-to-read-the-entire-file-into-memory-without-having-to-create-a-sql-database." class="level2">
-<h2 class="anchored" data-anchor-id="duckdb-uses-sql-syntax-to-read-the-file.-we-get-the-convenience-of-sql-you-dont-need-to-read-the-entire-file-into-memory-without-having-to-create-a-sql-database.">Duckdb uses SQL syntax to read the file. We get the convenience of SQL (you don’t need to read the entire file into memory) without having to create a SQL database.</h2>
+<p>Duckdb uses SQL syntax to read the file. We get the convenience of SQL (you don’t need to read the entire file into memory) without having to create a SQL database.</p>
+<hr>
 <p><em>Also on substack at <a href="https://kerryback.substack.com">kerryback.substack.com</a></em></p>
 
 
-</section>
 
 
 <div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
