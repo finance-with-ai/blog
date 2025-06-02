@@ -468,20 +468,28 @@ print("Response:", response.choices[0].message.content)</code></pre>
 </figure>
 </div>
 <p>We can upload files to Julius as with other chatbots. We can then chat about the data with the benefit of python. In fact, Julius.ai started life as the “Chat with Your Data” plug-in for ChatGPT. However, Julius can also grab online data. Computing stock returns from <a href="https://finance.yahoo.com/">Yahoo Finance</a> data is a good place to start. The yfinance library is the best python library for accessing Yahoo Finance. The data begins in 1970. To get the longest possible history for a ticker, we can ask Julius to get data starting in 1970. We can specify other dates, and we can also specify the frequency of the data - daily, weekly, monthly, quarterly, annual.</p>
-<p>Yahoo Finance computes dividend and split adjusted closing prices. We can compute total close-to-close returns, including dividend returns, as percent changes of the adjusted closing prices.<sup>1</sup> The yfinance library recently changed to returning the adjusted prices by default rather than returning standard (split-adjusted) prices. The confusing part is that it now calls the adjusted prices returned by default “Close” rather than the former “Adj Close.” I recommend prompting the LLM to use the latest version of yfinance and explicitly prompting the LLM to get the “Close” instead of “Adj Close.”</p>
+<p>Yahoo Finance computes dividend and split adjusted closing prices. We can compute total close-to-close returns, including dividend returns, as percent changes of the adjusted closing prices.<sup>1</sup> The yfinance library recently changed to returning the adjusted prices by default rather than returning standard (split-adjusted) prices. The confusing part is that it now calls the adjusted prices returned by default “Close” rather than the former “Adj Close.” I recommend prompting the LLM to use the latest version of yfinance and explicitly prompting the LLM to get the “Close” instead of “Adj Close.<sup>2</sup>”</p>
 <p>A more complex but also more transparent solution to the Close/Adj Close confusion is to prompt the LLM to use the yfinance download function with auto_adjust set to False (this was the old behavior) and to get both the “Close” and “Adj Close.” Percent changes in “Adj Close” are what we want for returns. To show students the difference between the two, we can ask for percent changes in both and then filter to dates where the percent changes differ by more than 0.00001 or so. Those dates will be the ex-dividend days. The difference between the two percent changes on those days is the quarterly dividend yield.</p>
-<p>An additional wrinkle with yfinance is that older versions have recently been return “rate limit” errors. Ask Julius to upgrade yfinance if you encounter that.</p>
 <p><a href="https://fred.stlouisfed.org/">FRED</a> (Federal Reserve Economic Data) is a standard source for macroeconomic data, including GDP, exchange rates, Treasury and corporate bond yields, crude oil prices, etc. The pandas-datareader library is the best python library for accessing FRED. We can go to the FRED website and find the data we want, but Julius is quicker. For example, “get the history of 10-year Treasury yields from FRED using pandas-datareader at a daily frequency and plot them.” In subsequent posts, we’ll explore other online data, including Ken French’s data library and the SEC EDGAR site.</p>
-<hr>
+<p>Of course, an alternative to using online data is to provide data to students. For example, we can give them CRSP data instead of using Yahoo Finance. They will then need to upload the CRSP data to Julius. There is a way to make large CRSP/Compustat datasets available to students while uploading only a subset of the data to Julius. This is useful because we may want to look at different tickers or different time periods or different variables in different analyses, but uploading a large dataset into Julius can be slow. Here are the steps I follow (please share alternatives in the comments below).</p>
+<ol type="1">
+<li>Download the dataset from CRSP or Compustat or wherever and save it as a csv file in Dropbox.</li>
+<li>Copy the Dropbox link to the csv file. Change the last symbol of the URL from 0 to 1 (dl = 0 at the end of the URL means “direct link = False;” dl = 1 means “direct link = True”, which is what we want). Share the revised URL with students.</li>
+<li>Tell students to ask Julius to install the python library duckdb and to read only the part of the data they want from the csv file at the URL. For example, they can say “use duckdb to read only the WMT returns.”</li>
+</ol>
+<section id="duckdb-uses-sql-syntax-to-read-the-file.-we-get-the-convenience-of-sql-you-dont-need-to-read-the-entire-file-into-memory-without-having-to-create-a-sql-database." class="level2">
+<h2 class="anchored" data-anchor-id="duckdb-uses-sql-syntax-to-read-the-file.-we-get-the-convenience-of-sql-you-dont-need-to-read-the-entire-file-into-memory-without-having-to-create-a-sql-database.">Duckdb uses SQL syntax to read the file. We get the convenience of SQL (you don’t need to read the entire file into memory) without having to create a SQL database.</h2>
 <p><em>Also on substack at <a href="https://kerryback.substack.com">kerryback.substack.com</a></em></p>
 
 
+</section>
 
 
 <div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
 <li id="fn1"><p>There is a slight caveat that the percent change of the adjusted closing price on an ex-dividend day takes the dividend out of the denominator of the price ratio rather than adding it to the numerator, but, given typical quarterly dividend yields, this has a negligible effect. Percent changes of adjusted closing prices on all days other than ex-dividend days equal percent changes in split-adjusted closing prices.↩︎</p></li>
+<li id="fn2"><p>An additional reason for updating yfinance is is that older versions (verions as recent as 0.2.54) have recently been returning ”rate limit” errors. Remind Julius to upgrade yfinance if you encounter that.↩︎</p></li>
 </ol>
 </section></div> ]]></description>
   <category>Finance</category>
