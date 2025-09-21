@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Finance + AI Insights</title>
+<title>Teaching Finance with AI</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -34,18 +34,19 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-befe23ebd2f54d8af2c8a89d1a1611f1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b651517ce65839d647a86e2780455cfb.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-53d2593c439f6cb1dd22a39060d1eb03.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-c490f8aea4cb0fd7a3a0e951737134da.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-53d2593c439f6cb1dd22a39060d1eb03.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-f7b3fea86068eec9c9470e3c0f8432e9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-529beebab8744b9bb17dda0eada66dc9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-f7b3fea86068eec9c9470e3c0f8432e9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -117,7 +118,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -134,7 +135,7 @@ window.Quarto = {
 </script>
 
 <link rel="stylesheet" href="styles.css">
-<link rel="alternate" type="application/rss+xml" title="Finance + AI Insights" href="index.xml" data-external="1"></head>
+<link rel="alternate" type="application/rss+xml" title="Teaching Finance with AI" href="index.xml" data-external="1"></head>
 
 <body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
@@ -305,8 +306,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Finance + AI Insights</span>
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -314,11 +314,33 @@ window.Quarto = {
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://genai4finance.kerryback.com"> <i class="bi bi-house-door-fill" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./subscribe.html"> <i class="bi bi-rss" role="img">
-</i> 
-<span class="menu-text">Subscribe</span></a>
+    <a class="nav-link active" href="./index.html" aria-current="page"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://mgmt675-2026.kerryback.com" target="_blank"> 
+<span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://genai4finance.kerryback.com#giscus"> 
+<span class="menu-text">Discussions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://fma2025.kerryback.com" target="_blank"> 
+<span class="menu-text">FMA Tutorial</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./#"> 
+<span class="menu-text">FMA Award</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -334,7 +356,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(16)</span></div><div class="category" data-category="QUklMjBPdmVydmlldw==">AI Overview <span class="quarto-category-count">(3)</span></div><div class="category" data-category="RmluYW5jZQ==">Finance <span class="quarto-category-count">(8)</span></div><div class="category" data-category="UHl0aG9uJTIwVG9vbHM=">Python Tools <span class="quarto-category-count">(6)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(17)</span></div><div class="category" data-category="QUklMjBPdmVydmlldw==">AI Overview <span class="quarto-category-count">(3)</span></div><div class="category" data-category="RmluYW5jZQ==">Finance <span class="quarto-category-count">(8)</span></div><div class="category" data-category="UHl0aG9uJTIwVG9vbHM=">Python Tools <span class="quarto-category-count">(6)</span></div></div></div>
 <!-- main -->
 <main class="content column-page-left" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
@@ -342,9 +364,6 @@ window.Quarto = {
 
 
 
-<div style="text-align: center;">
-<p><a href="https://blog.finance-with-ai.org"><img src="teaching_finance_with_ai_logo.png" class="img-fluid" width="150"></a></p>
-</div>
 <p>Follow on <a href="https://kerryback.substack.com">Substack</a> <br><br><br></p>
 
 
@@ -373,7 +392,32 @@ window.Quarto = {
   </div>
 </div>
 <div class="list quarto-listing-default">
-<div class="quarto-post image-left" data-index="0" data-categories="QUklMjBPdmVydmlldw==" data-listing-date-sort="1746316800000" data-listing-file-modified-sort="1757254209850" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1130">
+<div class="quarto-post image-left" data-index="0" data-listing-date-sort="1746230400000" data-listing-file-modified-sort="1758467734571" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="367">
+<div class="thumbnail"><a href="./posts/00-welcome/index.html" class="no-external">
+
+<img loading="lazy" src="./posts/00-welcome/logo.png" class="thumbnail-image" style="height: 8em;">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/00-welcome/index.html" class="no-external">Teaching Finance with AI</a>
+</h3>
+<div class="delink listing-description"><a href="./posts/00-welcome/index.html" class="no-external">
+I believe that one of the most important things we can teach business students today is how they can use AI to be more efficient in the workplace. I’ve started this blog and…
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/00-welcome/index.html" class="no-external">
+<div class="listing-date">
+May 3, 2025
+</div>
+<div class="listing-author">
+Kerry Back
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-left" data-index="1" data-categories="QUklMjBPdmVydmlldw==" data-listing-date-sort="1746316800000" data-listing-file-modified-sort="1758467734572" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1130">
 <div class="thumbnail"><a href="./posts/01-julius/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/01-julius/julius.png" class="thumbnail-image" style="height: 8em;">
@@ -403,7 +447,7 @@ Kerry Back
 </a>
 </div>
 </div>
-<div class="quarto-post image-left" data-index="1" data-categories="RmluYW5jZSUyQ1B5dGhvbiUyMFRvb2xz" data-listing-date-sort="1746403200000" data-listing-file-modified-sort="1757254209850" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="788">
+<div class="quarto-post image-left" data-index="2" data-categories="RmluYW5jZSUyQ1B5dGhvbiUyMFRvb2xz" data-listing-date-sort="1746403200000" data-listing-file-modified-sort="1758467734572" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="788">
 <div class="thumbnail"><a href="./posts/02-online-data/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/02-online-data/online.png" class="thumbnail-image" style="height: 8em;">
@@ -435,7 +479,7 @@ Kerry Back
 </a>
 </div>
 </div>
-<div class="quarto-post image-left" data-index="2" data-categories="UHl0aG9uJTIwVG9vbHM=" data-listing-date-sort="1746403200000" data-listing-file-modified-sort="1757254209858" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="339">
+<div class="quarto-post image-left" data-index="3" data-categories="UHl0aG9uJTIwVG9vbHM=" data-listing-date-sort="1746403200000" data-listing-file-modified-sort="1758467734580" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="339">
 <div class="thumbnail"><a href="./posts/03-visualize/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/03-visualize/visualize2.png" class="thumbnail-image" style="height: 8em;">
@@ -465,7 +509,7 @@ Kerry Back
 </a>
 </div>
 </div>
-<div class="quarto-post image-left" data-index="3" data-categories="RmluYW5jZQ==" data-listing-date-sort="1746489600000" data-listing-file-modified-sort="1757254209864" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="556">
+<div class="quarto-post image-left" data-index="4" data-categories="RmluYW5jZQ==" data-listing-date-sort="1746489600000" data-listing-file-modified-sort="1758467734586" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="556">
 <div class="thumbnail"><a href="./posts/04-capm/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/04-capm/capm.png" class="thumbnail-image" style="height: 8em;">
@@ -495,7 +539,7 @@ Kerry Back
 </a>
 </div>
 </div>
-<div class="quarto-post image-left" data-index="4" data-categories="UHl0aG9uJTIwVG9vbHM=" data-listing-date-sort="1746576000000" data-listing-file-modified-sort="1757254209874" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="347">
+<div class="quarto-post image-left" data-index="5" data-categories="UHl0aG9uJTIwVG9vbHM=" data-listing-date-sort="1746576000000" data-listing-file-modified-sort="1758467734596" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="347">
 <div class="thumbnail"><a href="./posts/05-building/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/05-building/building.png" class="thumbnail-image" style="height: 8em;">
@@ -525,7 +569,7 @@ Kerry Back
 </a>
 </div>
 </div>
-<div class="quarto-post image-left" data-index="5" data-categories="QUklMjBPdmVydmlldw==" data-listing-date-sort="1746576000000" data-listing-file-modified-sort="1757254209877" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="798">
+<div class="quarto-post image-left" data-index="6" data-categories="QUklMjBPdmVydmlldw==" data-listing-date-sort="1746576000000" data-listing-file-modified-sort="1758467734598" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="798">
 <div class="thumbnail"><a href="./posts/06-prompts/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/06-prompts/prompts.png" class="thumbnail-image" style="height: 8em;">
@@ -555,7 +599,7 @@ Kerry Back
 </a>
 </div>
 </div>
-<div class="quarto-post image-left" data-index="6" data-categories="UHl0aG9uJTIwVG9vbHM=" data-listing-date-sort="1746662400000" data-listing-file-modified-sort="1757254209886" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="992">
+<div class="quarto-post image-left" data-index="7" data-categories="UHl0aG9uJTIwVG9vbHM=" data-listing-date-sort="1746662400000" data-listing-file-modified-sort="1758467734607" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="992">
 <div class="thumbnail"><a href="./posts/07-apps/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/07-apps/apps.png" class="thumbnail-image" style="height: 8em;">
@@ -585,7 +629,7 @@ Kerry Back
 </a>
 </div>
 </div>
-<div class="quarto-post image-left" data-index="7" data-categories="RmluYW5jZQ==" data-listing-date-sort="1746748800000" data-listing-file-modified-sort="1757254209886" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="558">
+<div class="quarto-post image-left" data-index="8" data-categories="RmluYW5jZQ==" data-listing-date-sort="1746748800000" data-listing-file-modified-sort="1758467734608" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="558">
 <div class="thumbnail"><a href="./posts/08-simulation/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/08-simulation/monte-carlo.png" class="thumbnail-image" style="height: 8em;">
@@ -615,7 +659,7 @@ Kerry Back
 </a>
 </div>
 </div>
-<div class="quarto-post image-left" data-index="8" data-categories="RmluYW5jZQ==" data-listing-date-sort="1746835200000" data-listing-file-modified-sort="1757254209893" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="807">
+<div class="quarto-post image-left" data-index="9" data-categories="RmluYW5jZQ==" data-listing-date-sort="1746835200000" data-listing-file-modified-sort="1758467734615" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="807">
 <div class="thumbnail"><a href="./posts/09-mean-variance/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/09-mean-variance/mean-variance.png" class="thumbnail-image" style="height: 8em;">
@@ -645,7 +689,7 @@ Kerry Back
 </a>
 </div>
 </div>
-<div class="quarto-post image-left" data-index="9" data-categories="QUklMjBPdmVydmlldw==" data-listing-date-sort="1746921600000" data-listing-file-modified-sort="1757254209897" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1560">
+<div class="quarto-post image-left" data-index="10" data-categories="QUklMjBPdmVydmlldw==" data-listing-date-sort="1746921600000" data-listing-file-modified-sort="1758467734618" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1560">
 <div class="thumbnail"><a href="./posts/10-apis/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/10-apis/apis.png" class="thumbnail-image" style="height: 8em;">
@@ -675,7 +719,7 @@ Kerry Back
 </a>
 </div>
 </div>
-<div class="quarto-post image-left" data-index="10" data-categories="RmluYW5jZQ==" data-listing-date-sort="1747008000000" data-listing-file-modified-sort="1757254209902" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="519">
+<div class="quarto-post image-left" data-index="11" data-categories="RmluYW5jZQ==" data-listing-date-sort="1747008000000" data-listing-file-modified-sort="1758467734623" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="519">
 <div class="thumbnail"><a href="./posts/11-alpha/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/11-alpha/alpha.png" class="thumbnail-image" style="height: 8em;">
@@ -705,7 +749,7 @@ Kerry Back
 </a>
 </div>
 </div>
-<div class="quarto-post image-left" data-index="11" data-categories="RmluYW5jZQ==" data-listing-date-sort="1747094400000" data-listing-file-modified-sort="1757254209903" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="381">
+<div class="quarto-post image-left" data-index="12" data-categories="RmluYW5jZQ==" data-listing-date-sort="1747094400000" data-listing-file-modified-sort="1758467734624" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="381">
 <div class="thumbnail"><a href="./posts/12-fama-french/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/12-fama-french/factors.png" class="thumbnail-image" style="height: 8em;">
@@ -735,7 +779,7 @@ Kerry Back
 </a>
 </div>
 </div>
-<div class="quarto-post image-left" data-index="12" data-categories="UHl0aG9uJTIwVG9vbHM=" data-listing-date-sort="1747612800000" data-listing-file-modified-sort="1757254209960" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="978">
+<div class="quarto-post image-left" data-index="13" data-categories="UHl0aG9uJTIwVG9vbHM=" data-listing-date-sort="1747612800000" data-listing-file-modified-sort="1758467734681" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="978">
 <div class="thumbnail"><a href="./posts/18-scraping/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/18-scraping/scraping.png" class="thumbnail-image" style="height: 8em;">
@@ -765,7 +809,7 @@ Kerry Back
 </a>
 </div>
 </div>
-<div class="quarto-post image-left" data-index="13" data-categories="RmluYW5jZQ==" data-listing-date-sort="1747699200000" data-listing-file-modified-sort="1757254209915" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="500">
+<div class="quarto-post image-left" data-index="14" data-categories="RmluYW5jZQ==" data-listing-date-sort="1747699200000" data-listing-file-modified-sort="1758467734636" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="500">
 <div class="thumbnail"><a href="./posts/13-capital-budgeting/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/13-capital-budgeting/capital-budgeting2.png" class="thumbnail-image" style="height: 8em;">
@@ -795,7 +839,7 @@ Kerry Back
 </a>
 </div>
 </div>
-<div class="quarto-post image-left" data-index="14" data-categories="RmluYW5jZQ==" data-listing-date-sort="1748822400000" data-listing-file-modified-sort="1757254210007" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="686">
+<div class="quarto-post image-left" data-index="15" data-categories="RmluYW5jZQ==" data-listing-date-sort="1748822400000" data-listing-file-modified-sort="1758467734726" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="686">
 <div class="thumbnail"><a href="./posts/form4/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/form4/form4.png" class="thumbnail-image" style="height: 8em;">
@@ -825,7 +869,7 @@ Kerry Back
 </a>
 </div>
 </div>
-<div class="quarto-post image-left" data-index="15" data-categories="UHl0aG9uJTIwVG9vbHM=" data-listing-date-sort="1752105600000" data-listing-file-modified-sort="1757254209984" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1358">
+<div class="quarto-post image-left" data-index="16" data-categories="UHl0aG9uJTIwVG9vbHM=" data-listing-date-sort="1752105600000" data-listing-file-modified-sort="1758467734705" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1358">
 <div class="thumbnail"><a href="./posts/24-tech-stack/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/24-tech-stack/tech-stack.png" class="thumbnail-image" style="height: 8em;">
@@ -922,13 +966,14 @@ Kerry Back
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -943,7 +988,7 @@ Kerry Back
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/blog\.finance-with-ai\.org");
+        var filterRegex = new RegExp("https:\/\/finance-with-ai\.org");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -1306,14 +1351,14 @@ Kerry Back
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-      &nbsp;
-    </div>   
-    <div class="nav-footer-center">
 <p>© Copyright 2025, Kerry Back</p>
-</div>
-    <div class="nav-footer-right">
+</div>   
+    <div class="nav-footer-center">
       &nbsp;
     </div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org/">Quarto</a></p>
+</div>
   </div>
 </footer>
 
